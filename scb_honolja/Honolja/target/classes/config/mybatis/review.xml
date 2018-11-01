@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+	<select id="select" parameterType="int"
+		resultType="com.guest.honolja.review.ReviewDTO">
+		<!-- select rownum as rrn, h.hobby_idx, r.rhobby_idx, r.rwriter, r.rmemo, 
+			r.hobby_idx from hobby h inner join hobby_reply r on h.hobby_idx = r.hobby_idx 
+			and r.hobby_idx = #{h.hobby_idx} order by rrn -->
+		<!-- select * from review where g_no = #{g_no} order by re_no desc -->
+		select r.*,(select count(*) from answer where re_no =
+		r.re_no)
+		as
+		ansCnt
+		from review r where
+		r.g_no
+		=
+		#{g_no}
+	</select>
+
+	<select id="answerView" parameterType="int"
+		resultType="com.guest.honolja.review.ReviewDTO">
+		select * from answer where re_no = #{re_no}
+	</select>
+
+	<insert id="add"
+		parameterType="com.guest.honolja.review.ReviewDTO">
+		INSERT INTO review VALUES (review_seq.nextval,
+		#{re_title}, #{re_content},
+		#{re_like},
+		#{re_score},
+		sysdate, #{re_img},
+		#{u_id}, #{g_no})
+	</insert>
+
+	<insert id="answerAdd"
+		parameterType="com.guest.honolja.review.ReviewDTO">
+		INSERT INTO answer VALUES (answer_seq.nextval,
+		#{u_guestname}, #{a_content},
+		sysdate, #{re_no})
+	</insert>
+
+	<select id="countAll" parameterType="int" resultType="int">
+		select
+		count(*) from review where g_no = #{g_no}
+	</select>
+
+	<select id="premodify" parameterType="int"
+		resultType="com.guest.honolja.review.ReviewDTO">
+		select * from review where re_no = #{re_no}
+	</select>
+
+	<update id="modify"
+		parameterType="com.guest.honolja.review.ReviewDTO">
+		update review set
+		re_title = #{re_title},
+		re_content =
+		#{re_content},
+		re_like = #{re_like},
+		re_score = #{re_score},
+		re_date =
+		sysdate,
+		re_img = #{re_img},
+		u_id = #{u_id}
+		where
+		re_no = #{re_no}
+	</update>
+
+	<delete id="del" parameterType="int">
+		delete from review where re_no =
+		#{re_no}
+	</delete>
+
+	<delete id="answerDel" parameterType="int">
+		delete from answer where
+		re_no =
+		#{re_no}
+	</delete>
+</mapper>

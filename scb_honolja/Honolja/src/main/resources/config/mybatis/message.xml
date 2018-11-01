@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="message">
+
+ <insert id="msgSend" parameterType="msg">
+  insert into message(
+  	m_no, m_title, m_content, m_id, m_date, u_id, m_check, m_send, m_receive
+  	 ) values (message_seq.nextval, #{m_title}, #{m_content}, #{m_id}, sysdate, #{u_id}, 'false', 'true', 'true')
+ </insert>
+
+
+ <select id="msgSelectR" resultType="msg" parameterType="String">
+  select * from message where m_id = #{m_id} and m_receive = 'true' order by m_date desc
+ </select>
+ 
+
+ <select id="msgSelectS" resultType="msg" parameterType="String">
+  select * from message where u_id = #{u_id} and m_send = 'true' order by m_date desc
+ </select>
+ 
+ <select id="msgselect" resultType="int" parameterType="String">
+ 	select count(*) as cnt from message where m_check = 'false' and m_receive = 'true' and m_id = #{m_id}
+ </select>
+ 
+ <select id="msgDetail" parameterType="int" resultType="msg">
+  select rownum rn, m.* from message m where m_no = #{m_no}
+ </select>
+ 
+ <update id="msgCheck" parameterType="int">
+  update message set m_check = 'true' where m_no = #{m_no}
+ </update>
+ 
+ <update id="msgDeleteS" parameterType="int">
+	update message set m_send = 'false' where m_no = #{m_no}
+ </update>  
+ 
+ <update id="msgDeleteR" parameterType="int">
+	update message set m_receive = 'false' where m_no = #{m_no}
+ </update>
+ 
+ <delete id="msgCancel" parameterType="msg">
+  delete from message where m_check = #{m_check} and m_no = #{m_no}
+ </delete>
+</mapper>

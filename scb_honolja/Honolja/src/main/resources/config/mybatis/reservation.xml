@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reservation">
+
+	<select id="res" resultType="com.guest.honolja.detail.DetailDTO"
+		parameterType="com.guest.honolja.detail.DetailDTO">
+		<!-- select * from roominfo where r_no = #{r_no} -->
+		select
+		g.*, r.*
+		from
+		guesthouse g inner join
+		roominfo r
+		on
+		g.g_no
+		=
+		r.g_no
+		and
+		r.r_no =
+		#{r_no}
+	</select>
+
+	<insert id="resAdd"
+		parameterType="com.guest.honolja.detail.DetailDTO">
+		insert into reservation values(
+		reservation_seq.nextval,
+		#{u_id}, #{res_price},
+		#{res_ok}, #{res_people}, sysdate,
+		to_date(#{check_in}, 'YYYY/MM/DD'),
+		to_date(#{check_out},'YYYY/MM/DD'),
+		#{r_no}
+		)
+	</insert>
+
+	<select id="resSelect"
+		parameterType="com.guest.honolja.detail.DetailDTO"
+		resultType="com.guest.honolja.detail.DetailDTO">
+		select * from reservation where
+		to_date(#{check_in},'YYYY/MM/DD') <![CDATA[<=]]>
+		check_in AND to_date(#{check_out},'YYYY/MM/DD') <![CDATA[>=]]>
+		check_out and res_ok = 'y'
+	</select>
+
+	<!-- (TO_DATE(#{res_startdate},'YYYY/MM/DD') <![CDATA[<]]> res_startdate 
+		AND TO_DATE(#{res_enddate},'YYYY/MM/DD') <![CDATA[>]]> res_startdate)OR (TO_DATE(#{res_startdate},'YYYY/MM/DD') 
+		<![CDATA[<]]> res_enddate AND TO_DATE(#{res_enddate},'YYYY/MM/DD') <![CDATA[>]]> 
+		res_enddate)OR (TO_DATE(#{res_startdate},'YYYY/MM/DD') <![CDATA[>]]> res_startdate 
+		AND TO_DATE(#{res_enddate},'YYYY/MM/DD') <![CDATA[<]]> res_enddate)OR (TO_DATE(#{res_startdate},'YYYY/MM/DD') 
+		<![CDATA[<=]]> res_startdate AND TO_DATE(#{res_enddate},'YYYY/MM/DD') <![CDATA[>=]]> 
+		res_enddate)) -->
+		
+		
+</mapper>

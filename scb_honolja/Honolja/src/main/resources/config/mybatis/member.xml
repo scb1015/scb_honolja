@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<insert id="m_insert" parameterType="com.guest.honolja.member.MemberDTO">
+		insert into users(u_no, u_id, u_pwd, u_name, u_birth, u_gender, u_phn, u_img, u_email, u_member, u_date, u_update, u_guestname, u_postcode, u_guestjuso, u_guestnum, u_imgpath) 
+			 values(
+				users_seq.nextval, #{u_id}, #{u_pwd}, #{u_name}, #{u_birth}, #{u_gender}, #{u_phn}, #{u_img}, #{u_email}, #{u_member}, sysdate, sysdate, #{u_guestname}, #{u_postcode}, #{u_guestjuso}, #{u_guestnum}, #{u_imgpath}
+				)
+	</insert>
+	
+	<select id="m_select" resultType="com.guest.honolja.member.MemberDTO" parameterType="com.guest.honolja.member.MemberDTO">
+		select * from( 
+			select rownum rn, u_no, u_id, u_pwd, u_name, u_birth, u_gender, u_phn, u_img, u_email, u_member, u_date, u_update from(
+				select * from users where u_member in #{u_member} and ${skey} like '%' || #{sval} || '%')
+		 			)where rn between #{start} and #{end}
+	</select>
+	
+	<select id="m_detail" resultType="com.guest.honolja.member.MemberDTO" parameterType="int">
+		select u_no, u_id, u_pwd, u_name, u_birth, u_gender, u_phn, u_img, u_email, u_member, u_date, u_update from users where u_no = #{u_no} 
+	</select>
+	
+	<select id="m_count" resultType="int" parameterType="com.guest.honolja.member.MemberDTO">
+		select count(*) as cnt from users where u_member = #{u_member} and ${skey} like '%' || #{sval} || '%'
+	</select>
+	
+	<select id="login" resultType="int" parameterType="com.guest.honolja.member.MemberDTO">
+		select count(*) as u_cnt from users where u_id = #{u_id} and u_pwd = #{u_pwd}
+	</select>
+	
+	<select id="idCheck" resultType="int" parameterType="String">
+		select count(*) as u_cnt from users where u_id = #{u_id}
+	</select>
+	
+	<select id="findingID" resultType="String" parameterType="com.guest.honolja.member.MemberDTO">
+		select u_id from users where u_name = #{u_name} and u_phn = #{u_phn}
+	</select>
+	
+	<select id="findPWid" resultType="String" parameterType="String">
+		select u_name from users where u_id = #{u_id}
+	</select>
+	
+	<select id="emailkeyCheck" resultType="String" parameterType="com.guest.honolja.member.MemberDTO">
+		select u_id from users where u_emailkey = #{u_emailkey} and u_id = #{u_id}
+	</select>
+	
+	<update id="emailfalse" parameterType="com.guest.honolja.member.MemberDTO">
+		update users set u_emailcheck = 'false' where u_id = #{u_id}
+	</update>
+	
+	<update id="emailkey" parameterType="com.guest.honolja.member.MemberDTO">
+		update users set u_emailkey = #{u_emailkey}, u_emailcheck = 'false' where u_id = #{u_id}
+	</update>
+	
+	<update id="emailcheck" parameterType="String">
+		update users set u_emailcheck = 'true' where u_id = #{u_id}
+	</update>
+	
+	<update id="findingPW" parameterType="com.guest.honolja.member.MemberDTO">
+		update users set u_emailkey = #{u_emailkey} where u_id = #{u_id}
+	</update>
+	
+	<update id="pwdupdate" parameterType="com.guest.honolja.member.MemberDTO">
+		update users set u_pwd = #{u_pwd} where u_id = #{u_id}
+	</update>
+</mapper>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="info">
+
+	<select id="selectImageBoard" parameterType="info" resultType="info">
+
+		select * from(
+		select rownum as rn, i.* from (
+		select i.*, (select count(*) from img_reply where i_no = i.i_no) as reply_cnt from img_board i order by i_no desc
+		) i 
+
+		<if test="skey != null">
+			<if test="skey == 'title'">
+				where i.i_title like '%' || #{sval} || '%'
+			</if>
+			<if test="skey == 'content'">
+				where i.i_content like '%' || #{sval} || '%'
+			</if>
+			<if test="skey == 'writer'">
+				where i.u_id like '%' || #{sval} || '%'
+			</if>
+		</if>
+	
+		)  where rn between #{list_start} and #{list_end}
+	</select>
+	
+	<select id="CountImageBoard" resultType="int" parameterType="main">
+		select count(*) from img_board i
+		
+		<if test="skey != null">
+			<if test="skey == 'title'">
+				where i.i_title like '%' || #{sval} || '%'
+			</if>
+			<if test="skey == 'content'">
+				where i.i_content like '%' || #{sval} || '%'
+			</if>
+			<if test="skey == 'writer'">
+				where i.u_id like '%' || #{sval} || '%'
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectImageBoardDetail" resultType="info" parameterType="int">
+		select * from img_board where i_no = #{i_no}	
+	</select>
+	
+	<insert id="insertImageBoard" parameterType="info">
+		insert into img_board values ( 
+			img_board_seq.nextval, 
+			#{i_title}, 
+			#{i_content}, 
+			sysdate, 
+			0, 
+			0, 
+			#{i_originalFileName}, 
+			#{i_uploadFileName},
+			#{i_fileSize}, 
+			#{i_youtube},
+			#{u_id} 
+			)
+	</insert>
+	
+	<update id="updateImageBoardViewCnt" parameterType="info">
+		update img_board set i_viewcnt = #{i_viewcnt} where i_no = #{i_no}
+	</update>
+	
+	<update id="updateImageBoardStarCnt" parameterType="info">
+		update img_board set i_starcnt = #{i_starcnt} where i_no = #{i_no}
+	</update>
+	
+	<insert id="insertImageBoardLike" parameterType="info">
+		insert into img_like values(img_like_SEQ.nextval, #{il_like}, #{u_id}, #{i_no})
+	</insert>
+	
+	<select id="selectCheckImgBoardLike" parameterType="info" resultType="int">
+		select count(*) from img_like where u_id = #{u_id} and i_no = #{i_no}
+	</select>
+	
+	<update id="updateImageBoardLike" parameterType="info">
+		update img_like set il_like = #{il_like} where u_id = #{u_id} and i_no = #{i_no}
+	</update>
+	
+	<select id="selectImgBoardLike" parameterType="info" resultType="info">
+		select * from img_like where u_id = #{u_id} and i_no = #{i_no}
+	</select>
+	
+	<update id="updateImgBoardDetail" parameterType="info">
+		update img_board set 
+			i_title = #{i_title}, 
+			i_content = #{i_content},
+			i_date = sysdate 
+			
+			<if test="i_originalFileName != null">
+				,i_originalFileName = #{i_originalFileName}, 
+				i_uploadFileName = #{i_uploadFileName},
+				i_fileSize = #{i_fileSize} 
+			</if>
+			
+			where i_no = #{i_no}
+	</update>
+	
+	<delete id="deleteImgBoardDetail" parameterType="int">
+		delete from img_board where i_no = #{i_no}
+	</delete>
+	
+	<select id="selectImgBoardReply" parameterType="int" resultType="info">
+		select * from img_reply where i_no = #{i_no} order by ir_no desc
+	</select>
+	
+	<insert id="insertImgBoardReply" parameterType="info">
+		insert into img_reply values(
+			img_reply_seq.nextval, 
+			#{ir_content}, 
+			sysdate, 
+			#{i_no}, 
+			#{u_id}
+			)
+	</insert>
+	
+	<update id="updateImgBoardReply">
+		update img_reply set ir_content = #{ir_content} where ir_no = #{ir_no}
+	</update>
+	
+	<delete id="deleteImgBoardReply">
+		delete from img_reply where ir_no = #{ir_no}
+	</delete>
+	
+	<select id="selectImgBoardReplyOfReply" resultType="info">
+		select * from img_reply_of_reply where ir_no = #{ir_no} order by irr_no desc
+	</select>
+	
+	<insert id="insertImgBoardROR">
+		insert into img_reply_of_reply values(
+			img_reply_of_reply_SEQ.nextval, 
+			#{irr_content}, 
+			sysdate, 
+			#{ir_no}, 
+			#{u_id}
+		)
+	</insert>
+	
+	<update id="updateImgBoardROR">
+		update img_reply_of_reply set irr_content = #{irr_content} where irr_no = #{irr_no}
+	</update>
+	
+	<delete id="deleteImgBoardROR">
+		delete from img_reply_of_reply where irr_no = #{irr_no}
+	</delete>
+	
+</mapper>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="detail">
+	<select id="roomView"
+		resultType="com.guest.honolja.detail.DetailDTO" parameterType="int">
+		select *
+		from guesthouse where g_no = #{g_no}
+	</select>
+	<select id="roomSelect"
+		resultType="com.guest.honolja.detail.DetailDTO"
+		parameterType="com.guest.honolja.detail.DetailDTO">
+		select g.*, r.*, (select count(*) from review where
+		g_no = r.g_no) as rcnt from guesthouse g inner join
+		roominfo r on g.g_no = r.g_no and r.g_no = #{g_no}
+	</select>
+	<select id="imageSelect" parameterType="int"
+		resultType="com.guest.honolja.detail.DetailDTO">
+		select *
+		from roominfo where g_no = #{g_no}
+	</select>
+</mapper>

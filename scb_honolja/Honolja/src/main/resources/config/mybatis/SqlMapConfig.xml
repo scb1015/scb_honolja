@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="boarddto"
+			type="com.guest.honolja.board.BoardDTO" />
+		<typeAlias alias="main"
+			type="com.guest.honolja.main.MainDTO" />
+		<typeAlias alias="mto"
+			type="com.guest.honolja.member.MemberDTO" />
+		<typeAlias alias="detail"
+			type="com.guest.honolja.detail.DetailDTO" />
+		<typeAlias alias="review"
+			type="com.guest.honolja.review.ReviewDTO" />
+		<typeAlias alias="listdto"
+			type="com.guest.honolja.list.ListDTO" />
+		<typeAlias alias="notice"
+			type="com.guest.honolja.notice.NoticeDTO" />
+		<typeAlias alias="msg"
+			type="com.guest.honolja.message.MsgDTO" />
+		<typeAlias alias="info"
+			type="com.guest.honolja.info.InfoDTO" />
+		<typeAlias alias="reservation"
+			type="com.guest.honolja.reservation.ReservationDTO" />
+	</typeAliases>
+
+
+	<mappers>
+		<mapper resource="config/mybatis/board.xml" />
+		<mapper resource="config/mybatis/member.xml" />
+		<mapper resource="config/mybatis/main.xml" />
+		<mapper resource="config/mybatis/info.xml" />
+		<mapper resource="config/mybatis/mypage.xml" />
+		<mapper resource="config/mybatis/firstList.xml" />
+		<mapper resource="config/mybatis/detail.xml" />
+		<mapper resource="config/mybatis/review.xml" />
+		<mapper resource="config/mybatis/notice.xml" />
+		<mapper resource="config/mybatis/message.xml" />
+		<mapper resource="config/mybatis/reservation.xml" />
+	</mappers>
+</configuration>
+	   

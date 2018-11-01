@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+
+	<insert id="insertN" parameterType="com.guest.honolja.notice.NoticeDTO">
+	 insert into noticeboard values(
+	 	noticeboard_seq.nextval, #{n_title}, #{n_content}, sysdate, #{n_viewcnt}, #{u_id}, #{n_fix}
+	 )
+	</insert>
+	
+	<select id="selectNAll" parameterType="com.guest.honolja.notice.NoticeDTO" resultType="com.guest.honolja.notice.NoticeDTO">
+		select * from ( 
+		 select rownum rn, n_no, n_title, n_content, n_date, n_viewcnt, u_id, n_fix from ( 
+		  select * from noticeboard where ${skey} like '%' || #{sval} || '%'  order by n_fix desc, n_date desc 
+		 ) 
+		) where rn between #{start} and #{end}
+	</select>
+	
+	<!-- //규광 -->
+		<select id="sel" resultType="com.guest.honolja.notice.NoticeDTO">
+	select * from (
+		 select rownum rn, n_no, n_title, n_content, n_date, n_viewcnt, u_id, n_fix from noticeboard
+		) where rn between 1 and 3 
+	</select>
+	
+	<select id="selectCnt" parameterType="com.guest.honolja.notice.NoticeDTO" resultType="int">
+	 select count(*) as cnt 
+	   from noticeboard
+	  where ${skey} like '%' || #{sval} || '%'
+	</select>
+		
+	
+	<select id="selectNTOP" resultType="com.guest.honolja.notice.NoticeDTO">
+	 select * from noticeboard where n_fix = 'N'
+	</select>
+	
+	<select id="selectDetail" parameterType="int" resultType="com.guest.honolja.notice.NoticeDTO">
+	 select n_no, n_title, n_content, n_date, n_viewcnt, u_id, n_fix from noticeboard where n_no = #{n_no} 
+	</select>
+	
+	<update id="updatecnt" parameterType="com.guest.honolja.notice.NoticeDTO">
+	 update noticeboard set n_viewcnt = #{n_viewcnt} where n_no = #{n_no} 
+	</update>
+	
+	<delete id="deleteN" parameterType="int">
+	 delete from noticeboard where n_no = #{n_no}
+	</delete>
+	
+	<select id="preEdit" parameterType="int" resultType="com.guest.honolja.notice.NoticeDTO">
+	 select * from noticeboard where n_no = #{n_no}	
+	</select>
+
+	<update id="edit" parameterType="com.guest.honolja.notice.NoticeDTO">
+	 update noticeboard set n_title=#{n_title}, n_content=#{n_content} where n_no = #{n_no}
+	</update>
+	
+	<select id="selectM" parameterType="String" resultType="String">
+	 select u_member from users where u_id = #{u_id}
+	</select>
+
+</mapper>

@@ -1,0 +1,2071 @@
+
+drop table message;
+drop sequence message_SEQ;
+
+drop table boardrreply;
+drop sequence boardrreply_SEQ;
+
+drop table boardreply;
+drop sequence boardreply_SEQ;
+
+drop table boardlike;
+drop sequence boardlike_SEQ;
+
+drop table board;
+drop sequence board_SEQ;
+
+drop table answer;
+drop sequence answer_SEQ;
+
+drop table noticeboard;
+drop sequence noticeboard_SEQ;
+
+drop table reservation;
+drop sequence reservation_SEQ;
+
+drop table guestlike;
+drop sequence guestlike_SEQ;
+
+drop table image;
+drop sequence image_SEQ;
+
+drop table roominfo;
+drop sequence roominfo_SEQ;
+
+drop table review;
+drop sequence review_SEQ;
+
+drop table guesthouse;
+drop sequence guesthouse_SEQ;
+
+drop table img_like;
+drop sequence img_like_SEQ;
+
+drop table img_reply_of_reply;
+drop sequence img_reply_of_reply_SEQ;
+
+drop table img_reply;
+drop sequence img_reply_SEQ;
+
+drop table img_board;
+drop sequence img_board_SEQ;
+
+drop table users;
+drop sequence users_SEQ;
+
+
+
+------------------------------------------------------------------------------------------users--
+
+CREATE TABLE users
+(
+    u_no            number(4)       NOT NULL, 
+    u_id            VARCHAR2(20)    NOT NULL, 
+    u_pwd           number(20)      NULL, 
+    u_name          varchar2(10)    NOT NULL, 
+    u_birth         varchar2(20)    NULL, 
+    u_gender        varchar2(30)    NOT NULL, 
+    u_phn           varchar2(50)    , 
+    u_img           VARCHAR2(100)    NULL, 
+    u_email         VARCHAR2(20)    NOT NULL, 
+    u_member        VARCHAR2(20)    NULL, 
+    u_date          DATE            NULL, 
+    u_update        DATE            NULL, 
+    u_emailkey      VARCHAR2(50)    NULL, 
+    u_emailcheck    VARCHAR2(20)    NULL, 
+    u_guestname     VARCHAR2(30)    NULL,
+    u_postcode      VARCHAR2(20)    NULL,  
+    u_guestjuso     VARCHAR2(100)   NULL,  
+    u_guestnum      VARCHAR2(20)    NULL, 
+    u_imgpath	    VARCHAR2(100)   NULL,  
+    CONSTRAINT USERS_PK PRIMARY KEY (u_id)
+);
+
+
+CREATE SEQUENCE users_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+insert into users values(
+	users_SEQ.nextval,
+	'sky',
+	'1234',
+	'송규광',
+	'01-01',
+	'M',
+	'010-8888-8888',
+	'aa.jpg',
+	'abc@naver.com',
+	'member',
+	sysdate,
+	sysdate,
+	'12334',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true'
+);
+
+insert into users values(
+	users_SEQ.nextval,
+	'hb',
+	'1234',
+	'송규광',
+	'01-01',
+	'M',
+	'010-8888-8888',
+	'aa.jpg',
+	'abc@naver.com',
+	'member',
+	sysdate,
+	sysdate,
+	'12334',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true'
+);
+
+insert into users values(
+	users_SEQ.nextval,
+	'test',
+	'1234',
+	'송규광',
+	'01-01',
+	'M',
+	'010-8888-8888',
+	'aa.jpg',
+	'abc@naver.com',
+	'member',
+	sysdate,
+	sysdate,
+	'12334',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true'
+);
+
+insert into users values(
+	users_SEQ.nextval,
+	'testuser',
+	'1234',
+	'송규광',
+	'01-01',
+	'M',
+	'010-8888-8888',
+	'aa.jpg',
+	'abc@naver.com',
+	'member',
+	sysdate,
+	sysdate,
+	'12334',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true'
+);
+
+insert into users values(
+	users_SEQ.nextval,
+	'mtest',
+	'1234',
+	'송규광',
+	'01-01',
+	'M',
+	'010-8888-8888',
+	'aa.jpg',
+	'abc@naver.com',
+	'member',
+	sysdate,
+	sysdate,
+	'12334',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true'
+);
+
+insert into users values(
+	users_SEQ.nextval,
+	'01',
+	'1234',
+	'송규광',
+	'01-01',
+	'M',
+	'010-8888-8888',
+	'aa.jpg',
+	'abc@naver.com',
+	'member',
+	sysdate,
+	sysdate,
+	'12334',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true',
+	'true'
+);
+
+insert into users values (
+ users_seq.nextval,
+ 'admin',
+ 1234,
+ '관리자',
+ '01-01',
+ 'F',
+ '010-1111-2222',
+ 'aa.jpg',
+ 'abc@naver.com',
+ '관리자',
+ sysdate,
+ sysdate,
+ 12334,
+ 'true',
+ 'true',
+ 'true',
+ 'true',
+ 'true',
+ 'true'
+);
+
+
+
+------------------------------------------------------------------------------------------guesthouse--
+
+CREATE TABLE guesthouse
+(
+    g_no            NUMBER(4)        NOT NULL, 
+    g_name          VARCHAR2(200)    NOT NULL, 
+    g_addr          VARCHAR2(200)    NOT NULL, 
+    g_position_n    VARCHAR2(20)     NOT NULL, 
+    g_detail        VARCHAR2(20)     NULL, 
+    g_url           VARCHAR2(100)    NULL, 
+    g_position_e    VARCHAR2(20)     NOT NULL, 
+    CONSTRAINT GUESTHOUSE_PK PRIMARY KEY (g_no)
+);
+
+
+CREATE SEQUENCE guesthouse_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+--서울 guest house main 리스트--
+insert into guesthouse values(1,'더자인강남 게스트하우스','서울특별시 서초구 서초동 1307 5층 508호','37.5000710','','http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965da678b22.52786132.jpg','127.0248520');
+insert into guesthouse values(2,'서울 마틸다 게스트하우스','서울특별시 강남구 역삼동 812-6','37.5028880','','http://yaimg.yanolja.com/resize/place/v4/2017/08/25/02/640/599f0c016efca6.02928896.jpg','127.0271360');
+insert into guesthouse values(3,'24게스트하우스 잠실점','서울특별시 송파구 삼전동 47 한강빌딩 2층','37.5032770','','http://yaimg.yanolja.com/resize/place/v4/2017/08/25/02/640/599f0f7e84a944.36551405.jpg','127.0893700');
+insert into guesthouse values(4,'강남 게스트하우스 마루','서울특별시 강남구 역삼동 669-6','37.5032790','','http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/59993f305c06c1.82428754.jpg','127.0368540');
+insert into guesthouse values(5,'서울 빅존스 플레이스 게스트하우스','서울특별시 강남구 역삼동 615-11','37.5040510','','http://yaimg.yanolja.com/resize/place/v4/2017/08/25/00/640/599ef5bdd96e21.61159845.jpg','127.0273060');
+insert into guesthouse values(6,'강남 화이트 게스트하우스','서울특별시 강남구 역삼동 604 리치타워아파트 103호','37.5053890','','http://yaimg.yanolja.com/resize/place/v4/2017/08/25/06/640/599f4047977f47.79645217.jpg','127.0299960');
+insert into guesthouse values(7,'강남 게스트하우스 ONL','서울특별시 강남구 역삼동 685-6 401호','37.5079080','','http://yaimg.yanolja.com/v5/2018/03/29/16/640/5abc9bbbc56ce2.86425145.jpg','127.0422050');
+insert into guesthouse values(8,'서울의휴일 게스트하우스','서울특별시 강남구 대치동 925-28','37.4995830','','http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aaf6dbead4.70908335.jpg','127.0553150');
+insert into guesthouse values(9,'서울 골드힐 게스트하우스','서울특별시 강남구 논현동 41-4 2층','37.5141740','','http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/1280/59996529c9c778.43585576.JPG','127.0252490');
+insert into guesthouse values(10,'강남 데니스 게스트하우스','서울특별시 강남구 삼성동 130 삼성 이안애빌 401호','37.5085540','','http://yaimg.yanolja.com/v5/2018/04/05/16/640/5ac5cbecaeca65.10245779.jpg','127.0533950');
+
+--강원도 guest house main 리스트--
+insert into guesthouse values(11,'강릉 후아유 게스트하우스','강원도 강릉시 안현동 858-4','37.8049860','','http://yaimg.yanolja.com/v5/2017/12/01/17/640/5a2117bd1a0202.09727393.jpg','128.9016090');
+insert into guesthouse values(12,'강릉 랑 게스트하우스','강원도 강릉시 강문동 227','37.7963740','','http://yaimg.yanolja.com/resize/place/v4/2017/08/24/21/640/599ec7cd097024.81074071.jpg','128.9165980');
+insert into guesthouse values(13,'강릉 배다리 게스트하우스','강원도 강릉시 난곡동 108-12','37.7840970','','http://yaimg.yanolja.com/v5/2017/12/22/15/640/5a3ca20aa3c2a2.81687551.jpg','128.8800890');
+insert into guesthouse values(14,'강릉 게스트하우스 1호점(경포 본점)','강원도 강릉시 안현동 403-3','37.7840970','','http://yaimg.yanolja.com/resize/place/v4/2017/08/24/21/640/599ec80113a2a5.28517110.jpg','128.8800890');
+insert into guesthouse values(15,'속초 하루 게스트하우스','강원도 속초시 동명동 261-7','38.2115480','','http://yaimg.yanolja.com/resize/place/v4/2017/08/25/01/640/599efd72b9c642.38542727.jpg','128.5915500');
+
+--인천 guest house main 리스트--
+insert into guesthouse values(16,'인천 가을이네 게스트하우스','인천광역시 옹진군 영흥면 내리 1153-37','37.2688540','','http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fc1b8e184d2.39119111.jpg','126.4708580');
+insert into guesthouse values(17,'인천공항 영종 게스트하우스','인천광역시 중구 운서동 2766-10','37.4608980','','http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b7142348429b2.00087351.jpg','126.4678820');
+insert into guesthouse values(18,'인천공항 드림트립 게스트하우스','인천광역시 중구 운서동 3041-2','37.4955530','','http://yaimg.yanolja.com/resize/place/v4/2017/08/25/16/640/599fd76a8238c5.00752410.jpg','126.4975030');
+insert into guesthouse values(19,'인천 런웨이 게스트하우스','인천광역시 중구 운서동 2754-14','37.4931050','','http://yaimg.yanolja.com/resize/place/v4/2017/08/25/21/640/59a0176782e238.18710680.JPG','126.4816250');
+insert into guesthouse values(20,'인천공항 코인 게스트하우스','인천광역시 중구 운서동 3047-10','37.4966510','','http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a6580eed4bae8.53352959.jpg','126.5012540');
+
+--제주 guest house main 리스트--
+insert into guesthouse values(21,'제주공항 싱글스토리 게스트하우스','제주특별자치도 제주시 이도1동 1323','33.5071880','','http://yaimg.yanolja.com/v5/2018/07/17/11/640/5b4d51d236c255.28943329.jpg','126.5274990');
+insert into guesthouse values(22,'제주 피터팬 게스트하우스','제주특별자치도 제주시 도두1동 2539-1','33.5029750','','http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd3d52b7a87.84414357.jpg','126.4641210');
+insert into guesthouse values(23,'제주공항 게스트하우스 7','제주특별자치도 제주시 용담2동 2678-2','33.5089180','','http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdce13cf5a9.14431460.jpg','126.5112020');
+insert into guesthouse values(24,'우도 볼레낭 펜션','제주특별자치도 제주시 우도면 연평리 741','33.5033190','','http://yaimg.yanolja.com/v5/2018/08/16/10/640/5b74da18eef2a4.68976285.jpg','126.9556770');
+insert into guesthouse values(25,'우도 어해촌 게스트하우스','제주특별자치도 제주시 우도면 연평리 1579-1','33.5033190','','http://yaimg.yanolja.com/v5/2018/08/22/15/640/5b7d03cadfd104.43393490.jpg','126.9556770');
+insert into guesthouse values(26,'제주 과수원피스 게스트하우스','제주특별자치도 제주시 한림읍 금능리 1822','33.3854990','','http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be1526f4bf1.44378530.jpg','126.2271140');
+insert into guesthouse values(27,'제주 휴인애월 게스트하우스','제주특별자치도 제주시 애월읍 곽지리 964','33.4445470','','http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a885bcbc3a3.25455367.jpg','126.3153880');
+insert into guesthouse values(28,'제주 가니 게스트하우스','제주특별자치도 제주시 애월읍 구엄리 995','33.4714480','','http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b713bf113cce6.47930417.jpg','126.3822320');
+insert into guesthouse values(29,'제주 엔게디하우스','제주특별자치도 제주시 애월읍 신엄리 2819','33.4758180','','http://yaimg.yanolja.com/v5/2018/08/17/11/640/5b762c6aa0b946.51640243.jpg','126.3535980');
+insert into guesthouse values(30,'제주 썸앤쌈 게스트하우스','제주특별자치도 제주시 한림읍 협재리 1265-1','33.3935910','','http://yaimg.yanolja.com/resize/place/v4/2017/08/25/20/640/59a00a454df681.51407960.JPG','126.2532190');
+
+
+------------------------------------------------------------------------------------------board--
+
+CREATE TABLE board
+(
+    b_no                  number(4)         NOT NULL, 
+    b_title               varchar2(500)     NOT NULL, 
+    b_content             varchar2(3000)    NOT NULL, 
+    b_date                date              NOT NULL, 
+    b_member              number(10)        NULL, 
+    b_viewcnt             number(4)         NULL, 
+    b_originalFileName    varchar2(100)     NULL, 
+    b_uploadFileName      varchar2(100)     NULL, 
+    b_fileSize            number(20)        NULL, 
+    u_id                  VARCHAR2(20)      NOT NULL, 
+    CONSTRAINT BOARD_PK PRIMARY KEY (b_no)
+);
+
+
+
+CREATE SEQUENCE board_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+
+ALTER TABLE board
+    ADD CONSTRAINT FK_board_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id);
+
+insert into board values (board_seq.nextval, '오늘 제주도에서 만나실분', '제주도 놀러왔는데 같이 돌아다니실분 구해요.', sysdate, 4, 0,
+'', 'org.springframework.web.multipart.commons.CommonsMultipartFile@1eb6f108' , 10 , 'hb');
+insert into board values (board_seq.nextval, '맛점하세요~', '맛점', sysdate, 4, 0,'ㅇㅇ',  
+'org.springframework.web.multipart.commons.CommonsMultipartFile@1eb6f108' , 10 , 'mtest');
+insert into board values (board_seq.nextval, '게스트하우스 1박2일 놀러가실분 구해요', '혼자가려니 적적해서 같이 돌아다니실분 구합니다', sysdate, 4, 0,
+'', 'org.springframework.web.multipart.commons.CommonsMultipartFile@1eb6f108' , 10 , 'test');
+insert into board values (board_seq.nextval, '같이 게임한판 하실분?', '지금당장 들어오세요', sysdate, 4, 0,
+' '  ,'org.springframework.web.multipart.commons.CommonsMultipartFile@1eb6f108' , 10 , 'testuser');
+insert into board values (board_seq.nextval, '여기 놀러가보신분 계신가요?', '여기 좋은가요?', sysdate, 4, 0,
+'사진', 'org.springframework.web.multipart.commons.CommonsMultipartFile@1eb6f108' , 10 , 'sky');
+insert into board values (board_seq.nextval, 'Test', 'Test', sysdate, 4, 0,
+'Test', 'org.springframework.web.multipart.commons.CommonsMultipartFile@1eb6f108' , 10 , 'admin');
+
+
+
+------------------------------------------------------------------------------------------roominfo--
+
+CREATE TABLE roominfo
+(
+    r_no         NUMBER(4)        NOT NULL, 
+    r_name       VARCHAR2(50)     NOT NULL, 
+    r_content    VARCHAR2(70)     NOT NULL, 
+    r_price      NUMBER(10)       NOT NULL, 
+    r_min        number(2)        NOT NULL, 
+    r_people     number(4)        NULL, 
+    g_no         NUMBER(4)        NOT NULL, 
+    img_url      varchar2(100)    NOT NULL, 
+    img_url2     varchar2(100)    NOT NULL, 
+    img_url3     varchar2(100)    NOT NULL, 
+    CONSTRAINT ROOMINFO_PK PRIMARY KEY (r_no)
+);
+/
+
+CREATE SEQUENCE roominfo_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+
+ALTER TABLE roominfo
+    ADD CONSTRAINT FK_roominfo_g_no_guesthouse_g_ FOREIGN KEY (g_no)
+        REFERENCES guesthouse (g_no);
+ 
+ insert into roominfo values(
+ roominfo_seq.nextval,
+  '6인도미남여공용(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  29000, 1, 6,
+ 1,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965db367755.73360855.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965dbe7a003.04830447.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965db9dbb41.52581552.jpg');
+
+ insert into roominfo values(
+ roominfo_seq.nextval,
+  '4인여성도미(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  32000, 1, 4,
+ 1,
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a658b73d2f599.18876627.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a658b747d6f44.87909604.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a658b753419f3.03093221.jpg');
+
+ insert into roominfo values(
+ roominfo_seq.nextval,
+  '4인여성도미B(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  34000, 1, 4,
+ 1,
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a658b85b436c8.59798319.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a658b884983f0.17227578.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a658b88f41fe6.44627930.jpg');
+
+ insert into roominfo values(
+ roominfo_seq.nextval,
+  '2인여성도미토리(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  37000, 1, 2,
+ 1,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965da8e1e87.88977953.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965dabf3968.75947356.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965dad8f701.61653990.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '디럭스룸여성(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  55000, 1, 1,
+ 1,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965d99beb15.95939823.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965d9e7ba51.31828562.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965d9cf1ea6.28255561.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성6인도미토리(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  30000, 1, 6,
+ 2,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec65443476.12280259.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec6554b9a5.87535523.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec656b3908.90900739.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성6인도미토리(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  30000, 1, 6,
+ 2,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec65443476.12280259.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec6554b9a5.87535523.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec656b3908.90900739.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성4인도미토리(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  30000, 1, 4,
+ 2,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec6593dcb6.18017745.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec65aa2656.35051400.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec6593dcb6.18017745.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '싱글룸(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  50000, 1, 1,
+ 2,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec669aee95.42727850.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec6714d5d6.40939659.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec669aee95.42727850.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '디럭스싱글룸(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  55000, 1, 1,
+ 2,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec66514414.09556171.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec66675de2.75779308.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec668186f5.13766294.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '벙크베드룸(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  70000, 1, 1,
+ 2,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec66025066.80580599.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec6616fe75.22563906.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec66025066.80580599.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트윈룸(2인기준,22시입실마감)',
+  '기준 2명 (최대 2명) / 15:00입실',
+  80000, 2, 2,
+ 2,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec66290c96.17118079.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec663cb676.89835011.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec66290c96.17118079.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸(2인기준,22시입실마감)',
+  '기준 2명 (최대 2명) / 15:00입실',
+  70000, 2, 2,
+ 2,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec65cac7b5.41914285.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec65e317f1.84529373.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/05/640/5999ec65cac7b5.41914285.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸(2인기준,22시입실마감)',
+  '기준 2명 (최대 2명) / 15:00입실',
+  70000, 2, 2,
+ 3,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/06/640/5999fd4b84d575.32070331.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/06/640/5999fd4ba7de78.98997658.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/06/640/5999fd4bdc1675.21079652.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트윈룸(2인기준,22시입실마감)',
+  '기준 2명 (최대 2명) / 15:00입실',
+  75000, 2, 2,
+ 3,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/06/640/5999fd4ae61e87.37678749.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/06/640/5999fd4b0ae578.16320356.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/06/640/5999fd4b22cac2.90239223.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트리플룸(3인기준,22시입실마감)',
+  '기준 3명 (최대 3명) / 15:00입실',
+  95000, 3, 3,
+ 3,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/06/640/5999fd487aed86.97976029.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/06/640/5999fd48a48cd9.47000968.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/06/640/5999fd48c52578.51146908.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '패밀리룸(4인기준,22시입실마감)',
+  '기준 4명 (최대 4명) / 15:00입실',
+  125000, 4, 4,
+ 3,
+ 'http://yaimg.yanolja.com/v5/2017/08/22/14/640/599bbc8ba90ec1.50984536.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/08/22/14/640/599bbc8c6e2cd7.41955157.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/08/22/14/640/599bbc8d67b901.11446137.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '패밀리룸(6인기준,22시입실마감)',
+  '기준 6명 (최대 6명) / 15:00입실',
+  145000, 6, 6,
+ 3,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/09/640/599e170e835758.52712193.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/09/640/599e170ead35c4.86124896.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/09/640/599e170ed79207.61333977.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '싱글룸(1인기준)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  30000, 1, 1,
+ 4,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/59993f2ff0e6a3.49629710.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/59993f301dc129.31616434.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/59993f303d3989.80145270.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '2인실(2인기준/2층침대)',
+  '기준 2명 (최대 2명) / 14:00입실',
+  50000, 2, 2,
+ 4,
+ 'http://yaimg.yanolja.com/v5/2018/04/03/16/640/5ac3344d5af9d4.88020332.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/04/03/16/640/5ac3344e3a2329.58577507.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/04/03/16/640/5ac3344f17e963.84365343.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성2인도미(1인기준/22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  40000, 1, 2,
+ 5,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996218ef32c3.03962634.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599962191064e0.30212441.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999621922cba6.73371687.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성4인도미(1인기준/22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  40000, 1, 4,
+ 5,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599962189c3b21.20836015.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996218c44118.28054466.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996218d5e6c5.33811153.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트윈룸(2인기준/22시입실마감)',
+  '기준 2명 (최대 2명) / 14:00입실',
+  88000, 2, 2,
+ 5,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996217e9b8c9.57814439.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999621803ef26.39137401.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599962181acaa2.06505807.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '디럭스트윈룸(2인기준/22시입실마감)',
+  '기준 2명 (최대 2명) / 14:00입실',
+  96000, 2, 2,
+ 5,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996217b2f5a5.19616305.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996217c8fd43.70735156.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996217d7bf65.09663179.JPG');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '4인패밀리룸(4인기준/22시입실마감)',
+  '기준 4명 (최대 4명) / 14:00입실',
+  136000, 4, 4,
+ 5,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599962177c1e63.47878284.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996217911c15.72986121.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996217a31f14.40659705.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  'Room3호(개별숙박/1인기준)',
+  '기준 1명 (최대 4명) / 15:00입실',
+  33000, 1, 4,
+ 6,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/20/640/599d6747204433.55765791.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/20/640/599d6747386699.40838586.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/20/640/599d6747513578.75599872.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  'Room2호(개별숙박/1인기준)',
+  '기준 1명 (최대 4명) / 15:00입실',
+  45000, 1, 4,
+ 6,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/10/640/599a33a47ca031.07075557.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/10/640/599a33a4947cf8.50355538.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/10/640/599a33a4af08c8.39093271.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  'Room1호(개별숙박/1인기준)',
+  '기준 1명 (최대 4명) / 15:00입실',
+  55000, 1, 4,
+ 6,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/10/640/599a33a505fba4.83266437.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/10/640/599a33a4c4eab2.31404834.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/10/640/599a33a4dd9680.40385620.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '4인 여성 도미토리',
+  '기준 1명 (최대 1명) / 15:00입실',
+  28000, 1, 4,
+ 7,
+ 'http://yaimg.yanolja.com/v5/2018/03/29/16/640/5abc9b87f21865.14682313.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/03/29/16/640/5abc9b850595c6.94788181.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/03/29/16/640/5abc9b88d2f583.66983380.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '6인 남성 도미토리',
+  '기준 1명 (최대 1명) / 15:00입실',
+  28000, 1, 6,
+ 7,
+ 'http://yaimg.yanolja.com/v5/2018/03/29/16/640/5abc9ba10d7840.70369727.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/03/29/16/640/5abc9ba006b0c9.64632957.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/03/29/16/640/5abc9ba2137924.92726756.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸(1인기준)',
+  '기준 1명 (최대 2명) / 15:00입실',
+  42000, 1, 2,
+ 7,
+ 'http://yaimg.yanolja.com/v5/2018/07/03/16/640/5b3b221db54846.80978656.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/03/16/640/5b3b222065cf46.61765170.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/03/16/640/5b3b22212ade18.31002525.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '2룸 단체 A',
+  '기준 6명 (최대 6명) / 15:00입실',
+  130000, 6, 6,
+ 8,
+ 'http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aaded3f833.27682765.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aae0d17492.99791842.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aae06355a4.16947000.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '2룸 단체 B',
+  '기준 10명 (최대 10명) / 15:00입실',
+  180000, 10, 10,
+ 8,
+ 'http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aaf6dbead4.70908335.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aaf7c824d7.68866259.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aaf74b37d4.25698780.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '3룸 단체',
+  '기준 15명 (최대 15명) / 15:00입실',
+  230000, 15, 15,
+ 8,
+ 'http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aac461dbc4.45941628.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aac6753057.41965966.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/28/10/640/5b84aac74060f7.13205780.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성2인도미(1인기준/22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  34000, 1, 2,
+ 9,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/20/640/599d6743e8c447.47544177.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/20/640/599d6743e8c447.47544177.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/20/640/599d6743e8c447.47544177.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성3인도미(1인기준/22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  34000, 1, 3,
+ 9,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965611e0da3.32207988.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996561315ed1.43716749.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996560910904.31713720.JPG');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '싱글룸A(1인기준/22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  48000, 1, 1,
+ 9,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965603fbea2.26800817.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996560557d48.89121384.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/599965606a1087.49657439.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트윈룸(2인기준/22시입실마감)',
+  '기준 2명 (최대 2명) / 14:00입실',
+  65000, 2, 2,
+ 9,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999655ed172a5.33944579.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999655eec7db1.80681488.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999655f0858e0.03334594.JPG');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸(2인기준/22시입실마감)',
+  '기준 2명 (최대 2명) / 14:00입실',
+  69000, 2, 2,
+ 9,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/20/640/599d6744c73cd8.99716497.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/20/640/599d67450beb91.60337737.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/20/640/599d6744c73cd8.99716497.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '딜럭스트윈룸(2인기준/22시입실마감)',
+  '기준 2명 (최대 3명) / 14:00입실',
+  73000, 2, 3,
+ 9,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999652a97f885.95495368.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999652ace84e2.57272668.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999652ae84b92.86296438.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트리플룸(3인기준/22시입실마감)',
+  '기준 3명 (최대 3명) / 14:00입실',
+  95000, 3, 3,
+ 9,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996529c9c778.43585576.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/59996529de2461.56394043.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999652a0473d0.02357184.JPG');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '패밀리룸(4인기준/22시입실마감)',
+  '기준 4명 (최대 6명) / 14:00입실',
+  115000, 4, 6,
+ 9,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999652a6a2c96.04616769.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999652a7aaa05.10072562.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999652a8abe12.72472936.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '싱글룸B(1인기준/22시입실마감)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  48000, 1, 1,
+ 9,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999655f77b272.70359700.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999655f8ed455.86001407.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/19/640/5999655f9fac91.87350071.JPG');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트윈룸A',
+  '기준 2명 (최대 2명) / 14:00입실',
+  90000, 2, 2,
+ 10,
+ 'http://yaimg.yanolja.com/v5/2018/04/05/16/640/5ac5cbd0312749.21569857.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/04/05/16/640/5ac5cbd1428d75.52043183.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/04/05/16/640/5ac5cbd26a6901.76322526.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트윈룸B',
+  '기준 2명 (최대 2명) / 14:00입실',
+  90000, 2, 2,
+ 10,
+ 'http://yaimg.yanolja.com/v5/2018/04/05/16/640/5ac5cbb10e0861.76901657.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/04/05/16/640/5ac5cbb216f940.81956780.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/04/05/16/640/5ac5cbb152d693.80621180.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '도미토리 여',
+  '기준 1명 (최대 1명) / 16:00입실',
+  10000, 1, 6,
+ 11,
+ 'http://yaimg.yanolja.com/v5/2017/12/01/17/640/5a211785f26e33.03544183.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/12/01/17/640/5a211785f26e33.03544183.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/12/01/17/640/5a211785f26e33.03544183.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '도미토리 남',
+  '기준 1명 (최대 1명) / 16:00입실',
+  10000, 1, 6,
+ 11,
+ 'http://yaimg.yanolja.com/v5/2017/12/01/17/640/5a211785f26e33.03544183.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/12/01/17/640/5a211785f26e33.03544183.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/12/01/17/640/5a211785f26e33.03544183.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '일행룸',
+  '기준 2명 (최대 4명) / 16:00입실',
+  39900, 2, 4,
+ 11,
+ 'http://yaimg.yanolja.com/v5/2018/01/08/11/640/5a52d6a5b08851.32166856.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/01/08/11/640/5a52d6a5b08851.32166856.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/01/08/11/640/5a52d6a5b08851.32166856.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성6인도미c(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 16:00입실',
+  25000, 1, 6,
+ 12,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/17/640/59994185b12d21.49468244.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/17/640/59994185d17682.24306334.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/17/640/59994185ebd901.20572723.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성6인도미b(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 16:00입실',
+  25000,
+ 12,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999415671edc5.05886920.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/17/640/599941851c2034.04793839.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/17/640/59994185498b64.85169653.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성6인도미(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 16:00입실',
+  25000, 1, 6,
+ 12,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/59994155a110e5.07810209.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/59994155c79874.95101340.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/59994155e82034.99314073.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성8인도미(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 16:00입실',
+  25000, 1, 8,
+ 12,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414fb57be5.63118301.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414feb3c28.56900495.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/59994150300148.73419971.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성8인도미b(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 16:00입실',
+  25000, 1, 8,
+ 12,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414dee4ab5.13950311.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414e1abcb8.64151348.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414e443cf7.18115550.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성8인도미(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 16:00입실',
+  25000, 1, 8,
+ 12,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414c618ef8.55786603.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414c88e634.88673277.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414cac7707.77037629.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '온돌룸(3인기준,22시입실마감)',
+  '기준 3명 (최대 4명) / 16:00입실',
+  110000, 3, 4,
+ 12,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414b56f557.12465176.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414b7eda28.91606006.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/16/640/5999414ba14938.21920510.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성도미토리(1인기준)',
+  '기준 1명 (최대 12명) / 15:00입실',
+  20000, 1, 12,
+ 13,
+ 'http://yaimg.yanolja.com/v5/2017/12/22/15/640/5a3ca1c34a9794.54792925.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/12/22/15/640/5a3ca1c34a9794.54792925.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/12/22/15/640/5a3ca1c34a9794.54792925.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성도미토리(1인기준)',
+  '기준 1명 (최대 12명) / 15:00입실',
+  20000, 1, 12,
+ 13,
+ 'http://yaimg.yanolja.com/v5/2017/12/22/15/640/5a3ca1db67ac24.50328125.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/12/22/15/640/5a3ca1db67ac24.50328125.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/12/22/15/640/5a3ca1db67ac24.50328125.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '2층도미토리(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  20000, 1, 6,
+ 14,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/11/640/599cebfbbd9cb1.22113394.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/11/640/599cebfbe56dc3.91901977.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/11/640/599cebfc14fc96.89113446.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성6인도미토리D(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  20000, 1, 6,
+ 14,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999ea076c0ee5.84179883.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999ea076c0ee5.84179883.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999ea076c0ee5.84179883.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성6인도미토리C(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  20000, 1, 6,
+ 14,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999e9d9d0ff77.47403794.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999e9da0015f3.43037873.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999e9dac4bfe3.09977664.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성6인도미토리B(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  20000, 1, 6,
+ 14,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999e9d9a9f8f7.88737315.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999e9d9a9f8f7.88737315.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999e9d9a9f8f7.88737315.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성6인도미토리A(1인기준,22시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  20000, 1, 6,
+ 14,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999e37dd91d10.20597387.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999e37e0b7186.59467908.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/21/04/640/5999e37e49e5a8.61319545.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '4인여성도미(1인기준,23시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  20000, 1, 4,
+ 15,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a772dba95.51181409.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a77445605.38565283.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a775f9f55.39173064.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '4인남성도미(1인기준,23시입실마감)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  20000, 1, 4,
+ 15,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a79717c59.65628696.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a799171f7.55050711.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a79a10467.50442524.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸(2인기준,23시입실마감)',
+  '기준 2명 (최대 2명) / 15:00입실',
+  52000, 2, 2,
+ 15,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a4834ee76.76884265.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a4859dfb7.81474758.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a48706227.69368458.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '특실(2인기준,23시입실마감)',
+  '기준 2명 (최대 2명) / 15:00입실',
+  65000, 2, 2,
+ 15,
+ 'http://yaimg.yanolja.com/v5/2018/03/08/15/640/5aa0d6338b53c7.03998734.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/03/08/15/640/5aa0d633220196.38698116.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/03/08/15/640/5aa0d63660f3b0.42333004.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트리플룸(3인기준,23시입실마감)',
+  '기준 3명 (최대 3명) / 15:00입실',
+  65000, 3, 3,
+ 15,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a46e032e0.98211722.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a472dd961.68580650.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/20/21/640/59997a4741c0f5.36832666.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '겨울이방',
+  '기준 2명 (최대 4명) / 14:00입실',
+  80000, 2, 4,
+ 16,
+ 'http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fc1a3876a56.43434606.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fc1a456b178.94707163.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fc1a403b406.21714435.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '가을이방',
+  '기준 2명 (최대 4명) / 14:00입실',
+  80000, 2, 4,
+ 16,
+ 'http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fc1859b6fb6.86293409.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fc188032d56.96609673.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fc188d67134.26924644.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여름이방',
+  '기준 2명 (최대 4명) / 14:00입실',
+  80000, 2, 4,
+ 16,
+ 'http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fbf3fe0c1e0.69846231.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fbf425452e1.06724716.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/10/640/5b5fbf419322d4.79421513.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트윈룸',
+  '기준 2명 (최대 2명) / 14:00입실',
+  55000, 2, 2,
+ 17,
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b7141e4b0b9a8.09095383.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b7141e3985de8.35866084.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b7141e6cef148.97528135.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸',
+  '기준 2명 (최대 2명) / 14:00입실',
+  55000, 2, 2,
+ 17,
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b71419d2e7743.36185324.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b71419c109f56.70470156.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b71419ce36d42.05053209.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트리플룸',
+  '기준 3명 (최대 3명) / 14:00입실',
+  65000, 3, 3,
+ 17,
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b71420024c079.70295800.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b7142011c0103.77186588.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b71420016c0d9.72664346.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '패밀리룸',
+  '기준 4명 (최대 4명) / 14:00입실',
+  75000, 4, 4,
+ 17,
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b71421ec2ee23.85903038.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b71421fb10792.12516410.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b714220b3a2e6.63192452.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '트윈룸(2인기준/개별욕실)',
+  '기준 2명 (최대 2명) / 15:00입실',
+  50000, 2, 2,
+ 18,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c127c3dc4.91268424.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c129c33d4.98926736.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c12b0c0d6.95672084.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸(2인기준/개별욕실)',
+  '기준 2명 (최대 2명) / 15:00입실',
+  50000, 2, 2,
+ 18,
+ 'http://yaimg.yanolja.com/v5/2017/10/18/11/640/59e6c2701e8ed4.15368711.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/10/18/11/640/59e6c2726a2730.22477610.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/10/18/11/640/59e6c2721c1728.10084671.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '3인실(개별욕실)',
+  '기준 3명 (최대 3명) / 15:00입실',
+  60000, 3, 3,
+ 18,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c10c712b9.60590190.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c10e86348.29257899.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c11de74d2.89713172.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '3인실(개별욕실)',
+  '기준 3명 (최대 3명) / 15:00입실',
+  60000, 3, 3,
+ 18,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c10c712b9.60590190.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c10e86348.29257899.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c11de74d2.89713172.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '4인실(2층침대/개별욕실)',
+  '기준 4명 (최대 4명) / 15:00입실',
+  78000, 4, 4,
+ 18,
+ 'http://yaimg.yanolja.com/v5/2017/10/16/16/640/59e461778d45c0.83781747.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/10/16/16/640/59e461785d7ab1.88187720.jpg',
+ 'http://yaimg.yanolja.com/v5/2017/10/16/16/640/59e46179418835.31522565.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '4인 패밀리룸(개별욕실)',
+  '기준 4명 (최대 4명) / 15:00입실',
+  78000, 4, 4,
+ 18,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c0f9699c3.23299663.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c0fafa0f9.21479036.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0c0fcbfee8.69765912.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '5인실(개별욕실)',
+  '기준 5명 (최대 5명) / 15:00입실',
+  90000, 5, 5,
+ 18,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0be4d1ff24.29555447.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0be5033f16.71353878.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0be515b698.59013482.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '6인실(개별욕실)',
+  '기준 6명 (최대 6명) / 15:00입실',
+  100000, 6, 6,
+ 18,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0be40eadd9.92371408.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0be4327a38.67064730.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/23/14/640/599d0be44e5a93.91427520.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성 도미토리',
+  '기준 1명 (최대 1명) / 15:00입실',
+  30000, 1, 6,
+ 19,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e439393e0b9.11748137.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e439393e0b9.11748137.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e439393e0b9.11748137.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성 도미토리',
+  '기준 1명 (최대 1명) / 15:00입실',
+  30000, 1, 1,
+ 19,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e4393b1d283.31129442.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e4393b1d283.31129442.jpg',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e4393b1d283.31129442.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸(1인기준)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  50000, 1, 1,
+ 19,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e43937711c1.20322684.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e43937711c1.20322684.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e43937711c1.20322684.JPG');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸(2인기준)',
+  '기준 2명 (최대 2명) / 15:00입실',
+  70000, 2, 2,
+ 19,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e439366f863.82708719.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e439366f863.82708719.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/12/640/599e439366f863.82708719.JPG');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '2인 남성도미(전용욕실)',
+  '기준 1명 (최대 2명) / 15:00입실',
+  35000, 1, 2,
+ 20,
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a658048b0bd65.80535362.jpeg',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a65804fb59d42.80302809.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a65804adef8e7.81180977.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '2인 여성도미토리(전용욕실)',
+  '기준 1명 (최대 2명) / 15:00입실',
+  35000, 1, 2,
+ 20,
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a65806b8440d7.83542728.jpeg',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a6580701a5133.80487829.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a658074107b25.05113048.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '1인실(전용욕실)',
+  '기준 1명 (최대 3명) / 15:00입실',
+  45000, 1, 3,
+ 20,
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a6580ced558f7.46801829.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a6580cfb6ea50.21522956.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a6580cec527e8.54854715.JPG');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '2인실(전용욕실)',
+  '기준 2명 (최대 3명) / 15:00입실',
+  55000, 2, 3,
+ 20,
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a6580aca336e8.20798480.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a6580ad9d5b68.47180259.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a6580ada80542.19323912.JPG');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '3인실(전용욕실)',
+  '기준 3명 (최대 4명) / 15:00입실',
+  65000, 3, 4,
+ 20,
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a65808b0df193.24462923.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a65808d3459f8.50065117.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/01/22/15/640/5a6580951d0668.30902708.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '벙커베드 1인실',
+  '기준 1명 (최대 2명) / 16:00입실',
+  30000, 1, 2,
+ 21,
+ 'http://yaimg.yanolja.com/v5/2018/07/17/11/640/5b4d51d236c255.28943329.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/17/11/640/5b4d51d3087a44.18521445.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/17/11/640/5b4d51db64d3f1.48085054.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '남성 6인 도미토리',
+  '기준 1명 (최대 1명) / 16:00입실',
+  22000, 1, 6,
+ 22,
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd3b829fa97.96109285.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd3b9008684.54349431.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd3b879ba56.66690333.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성 6인 도미토리',
+  '기준 1명 (최대 1명) / 16:00입실',
+  22000, 1, 6,
+ 22,
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd39d36f153.76204230.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd39e4b9767.54290339.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd39dc4b442.83559542.jpg');
+
+ insert into roominfo values(
+roominfo_seq.nextval,
+  '여성 6인 도미토리',
+  '기준 1명 (최대 1명) / 16:00입실',
+  22000, 1, 6,
+ 22,
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd39dc4b442.83559542.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd39eb00d01.75215080.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd3a10d13f7.15673394.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '여성 4인 도미토리',
+  '기준 1명 (최대 1명) / 16:00입실',
+  25000, 1, 4,
+ 22,
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd38437d933.11544710.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd3855af923.24221592.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd38624f440.80045277.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '여성 트윈베드 도미토리',
+  '기준 1명 (최대 1명) / 16:00입실',
+  30000, 1, 1,
+ 22,
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd36a247ac4.90535559.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd36c523d65.83812050.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/07/31/12/640/5b5fd36d1e2ae0.77782544.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '온돌방',
+  '기준 2명 (최대 4명) / 16:00입실',
+  60000, 2, 4,
+ 23,
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdcb33b60a4.03356643.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdcb263c9c0.69219052.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdcb4d87b15.89804922.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '트윈룸',
+  '기준 2명 (최대 3명) / 16:00입실',
+  60000, 2, 3,
+ 23,
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdc96f0c280.05633474.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdc97d37eb6.99507522.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdc9a821a09.68898753.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '퀸더블룸',
+  '기준 2명 (최대 2명) / 16:00입실',
+  60000, 2, 2,
+ 23,
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdc83159700.74686473.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdc8225fd18.66361612.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6bdc84d16b00.72180611.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '객실(침대)',
+  '기준 2명 (최대 4명) / 15:00입실',
+  70000, 2, 4,
+ 24,
+ 'http://yaimg.yanolja.com/v5/2018/08/16/10/640/5b74d9eb0e3579.12692591.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/16/10/640/5b74d9ed2c3118.12172991.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/16/10/640/5b74d9ecc885a0.44871637.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '객실(온돌)',
+  '기준 2명 (최대 4명) / 15:00입실',
+  70000, 2, 4,
+ 24,
+ 'http://yaimg.yanolja.com/v5/2018/08/16/10/640/5b74d9c39572a2.72750778.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/16/10/640/5b74d9c49234b7.33021224.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/16/10/640/5b74d9c452f169.79375000.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '8인실(여성 도미토리)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  25000, 1, 8,
+ 25,
+ 'http://yaimg.yanolja.com/v5/2018/08/22/15/640/5b7d03b9cb46c7.22590248.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/22/15/640/5b7d03b9cb46c7.22590248.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/22/15/640/5b7d03b9cb46c7.22590248.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '4인실(남성 도미토리)',
+  '기준 1명 (최대 1명) / 14:00입실',
+  25000, 1, 4,
+ 25,
+ 'http://yaimg.yanolja.com/v5/2018/08/22/15/640/5b7d03a9167635.58314347.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/22/15/640/5b7d03a9167635.58314347.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/22/15/640/5b7d03a9167635.58314347.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '악마의 자식 니코 로빈',
+  '기준 1명 (최대 1명) / 16:00입실',
+  20000, 1, 1,
+ 26,
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be119ec15f4.34811588.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be11bcd2545.67993058.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be119de0ef7.72235655.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '해적사냥꾼 롤로노아 조로',
+  '기준 1명 (최대 1명) / 16:00입실',
+  30000, 1, 1,
+ 26,
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be0e7cd85c5.94047952.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be0eb5048d1.16357023.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be0eba0a8e8.04378526.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '저격왕 우솝',
+  '기준 1명 (최대 2명) / 16:00입실',
+  50000, 1, 2,
+ 26,
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be101c1ca41.05425323.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be100da49e6.62987616.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be10611ffe3.04895114.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '오렌지 타운(독채)',
+  '기준 6명 (최대 8명) / 16:00입실',
+  150000, 6, 8,
+ 26,
+ 'http://yaimg.yanolja.com/v5/2018/08/09/17/640/5b6bfc8a5a3a14.14187134.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/17/640/5b6bfc86c8d211.62137080.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/09/15/640/5b6be13a49a4e7.97182860.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '여성전용 도미토리(원룸 14평형)',
+  '기준 1명 (최대 1명) / 15:00입실',
+  18000, 1, 6,
+ 27,
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a884509ed45.39166771.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a88479f2873.99838670.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a8846cd1ae9.84137886.JPG');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '사랑채',
+  '기준 3명 (최대 4명) / 15:00입실',
+  70000, 3, 4,
+ 27,
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a882bd43744.90703403.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a882e848002.29769437.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a88305c3cf0.15001733.JPG');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '2층 복층 40평형',
+  '기준 10명 (최대 15명) / 15:00입실',
+  190000, 10, 15,
+ 27,
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a88134c60b4.43034249.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a881296a875.68683389.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a88152c47b5.56742484.JPG');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '1층 38평형',
+  '기준 8명 (최대 12명) / 15:00입실',
+  170000, 8, 12,
+ 27,
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a87f4e33f12.69575022.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a87f5c9ee81.60411404.JPG',
+ 'http://yaimg.yanolja.com/v5/2018/08/08/15/640/5b6a87f6a77236.59669807.JPG');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '여자도미토리',
+  '기준 1명 (최대 1명) / 15:00입실',
+  20000, 1, 1,
+ 28,
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b713bc67e9ed9.20130698.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b713bc9577449.99857254.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b713bc67e9ed9.20130698.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '남자도미토리',
+  '기준 1명 (최대 1명) / 15:00입실',
+  20000, 1, 1,
+ 28,
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b713bdb783ff4.63432943.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b713bdb783ff4.63432943.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/13/17/640/5b713bdb783ff4.63432943.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '더블룸',
+  '기준 2명 (최대 2명) / 16:00입실',
+  71000, 2, 2,
+ 29,
+ 'http://yaimg.yanolja.com/v5/2018/08/17/10/640/5b762bd82a2e66.25550827.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/17/10/640/5b762bda4b5ae4.18009121.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/17/10/640/5b762bdb3b0673.55689492.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '대가족룸',
+  '기준 6명 (최대 6명) / 16:00입실',
+  214000, 6, 6,
+ 29,
+ 'http://yaimg.yanolja.com/v5/2018/08/17/11/640/5b762c46006666.62913203.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/17/11/640/5b762c45939021.61408197.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/17/11/640/5b762c4684a8d5.94805077.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '패밀리룸',
+  '기준 2명 (최대 4명) / 16:00입실',
+  94000, 2, 4,
+ 29,
+ 'http://yaimg.yanolja.com/v5/2018/08/17/10/640/5b762c116c42c5.81181788.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/17/10/640/5b762c124cfaf2.26447040.jpg',
+ 'http://yaimg.yanolja.com/v5/2018/08/17/10/640/5b762c120505f1.27024280.jpg');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '여성 4인복층도미(1인기준)',
+  '기준 1명 (최대 1명) / 17:00입실',
+  14900, 1, 4,
+ 30,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/08/640/599e0c7b8fac32.55828973.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/08/640/599e0c7baf6ee4.95469317.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/08/640/599e0c7bd48f37.35178488.JPG');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '남성 4인복층도미(1인기준)',
+  '기준 1명 (최대 1명) / 17:00입실',
+  14900, 1, 4,
+ 30,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/07/640/599e08beae04e1.70847290.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/07/640/599e08bec50e59.77575612.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/07/640/599e08bee89e51.05741363.JPG');
+
+insert into roominfo values(
+roominfo_seq.nextval,
+  '여성 4인도미(1인기준)',
+  '기준 1명 (최대 1명) / 17:00입실',
+  14900, 1, 4,
+ 30,
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/07/640/599e08bf933f50.41664927.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/07/640/599e08bfb53dc0.21210509.JPG',
+ 'http://yaimg.yanolja.com/resize/place/v4/2017/08/24/07/640/599e08bfda2cf6.45295870.JPG');
+
+------------------------------------------------------------------------------------------review--
+
+CREATE TABLE review
+(
+    re_no         NUMBER(4)        NOT NULL, 
+    re_title      VARCHAR2(20)     NULL, 
+    re_content    VARCHAR2(500)    NOT NULL, 
+    re_like       VARCHAR2(20)     NOT NULL, 
+    re_score      NUMBER(4)        NOT NULL, 
+    re_date       DATE             NOT NULL, 
+    re_img        VARCHAR2(20)     NULL, 
+    u_id          VARCHAR2(20)     NOT NULL, 
+    g_no          NUMBER(4)        NOT NULL, 
+    CONSTRAINT REVIEW_PK PRIMARY KEY (re_no)
+);
+
+
+CREATE SEQUENCE review_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+ALTER TABLE review
+    ADD CONSTRAINT FK_review_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id) on delete cascade;
+/
+
+ALTER TABLE review
+    ADD CONSTRAINT FK_review_g_no_guesthouse_g_no FOREIGN KEY (g_no)
+        REFERENCES guesthouse (g_no) on delete cascade;
+
+
+------------------------------------------------------------------------------------------message--
+
+CREATE TABLE message
+(
+    m_no         number(4)        NOT NULL, 
+    m_title      varchar2(100)    NOT NULL, 
+    m_content    varchar2(500)    NOT NULL, 
+    m_id         varchar2(20)     NOT NULL, 
+    m_date       date             NOT NULL, 
+    u_id         varchar2(20)     NOT NULL, 
+    m_check      VARCHAR2(15)     NULL, 
+    m_send      VARCHAR2(10)     NULL, 
+    m_receive      VARCHAR2(10)     NULL, 
+    CONSTRAINT MESSAGE_PK PRIMARY KEY (m_no)
+);
+
+
+CREATE SEQUENCE message_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE message
+    ADD CONSTRAINT FK_message_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id);
+
+------------------------------------------------------------------------------------------boardreply--
+
+CREATE TABLE boardreply
+(
+    br_no         number(4)        NOT NULL, 
+    br_content    varchar2(100)    NOT NULL, 
+    br_date       date             NOT NULL, 
+    b_no          number(4)        NOT NULL, 
+    u_id          VARCHAR2(20)     NOT NULL, 
+    CONSTRAINT BOARDREPLY_PK PRIMARY KEY (br_no)
+);
+
+
+CREATE SEQUENCE boardreply_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE boardreply
+    ADD CONSTRAINT FK_boardreply_b_no_board_b_no FOREIGN KEY (b_no)
+        REFERENCES board (b_no);
+
+
+ALTER TABLE boardreply
+    ADD CONSTRAINT FK_boardreply_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id);
+
+------------------------------------------------------------------------------------------boardlike--
+
+CREATE TABLE boardlike
+(
+    bl_no      number(4)       NOT NULL, 
+    bl_date    date            NOT NULL, 
+    b_no       number(4)       NOT NULL, 
+    u_id       VARCHAR2(20)    NOT NULL, 
+    CONSTRAINT BOARDLIKE_PK PRIMARY KEY (bl_no)
+);
+
+
+CREATE SEQUENCE boardlike_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE boardlike
+    ADD CONSTRAINT FK_boardlike_b_no_board_b_no FOREIGN KEY (b_no)
+        REFERENCES board (b_no);
+
+
+ALTER TABLE boardlike
+    ADD CONSTRAINT FK_boardlike_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id);
+
+------------------------------------------------------------------------------------------answer--
+CREATE TABLE answer
+(
+    a_no           NUMBER(4)        NOT NULL, 
+    u_guestname    VARCHAR2(30)     NOT NULL, 
+    a_content      VARCHAR2(100)    NOT NULL, 
+    a_date         DATE             NULL, 
+    re_no          NUMBER(4)        NOT NULL, 
+    CONSTRAINT ANSWER_PK PRIMARY KEY (a_no)
+);
+/
+
+CREATE SEQUENCE answer_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE answer
+    ADD CONSTRAINT FK_answer_re_no_review_re_no FOREIGN KEY (re_no)
+        REFERENCES review (re_no) on delete cascade;
+
+
+------------------------------------------------------------------------------------------noticeboard--
+
+CREATE TABLE noticeboard
+(
+    n_no         NUMBER(4)         NOT NULL, 
+    n_title      VARCHAR2(500)     NOT NULL, 
+    n_content    VARCHAR2(2000)    NOT NULL, 
+    n_date       DATE              NOT NULL, 
+    n_viewcnt    NUMBER(4)         NOT NULL, 
+    u_id         VARCHAR2(20)      NOT NULL, 
+    n_fix        VARCHAR2(20)      NOT NULL, 
+    CONSTRAINT NOTICEBOARD_PK PRIMARY KEY (n_no)
+);
+
+
+CREATE SEQUENCE noticeboard_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+
+ALTER TABLE noticeboard
+    ADD CONSTRAINT FK_noticeboard_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id);
+
+insert into noticeboard values(
+	noticeboard_SEQ.nextval,
+	'혼놀자 위치기반서비스 이용약관 변경 안내',
+	'카카오 위치기반서비스 이용약관 변경 안내 내용',
+	sysdate,
+	0,
+	'admin',
+	'Y'
+);
+
+insert into noticeboard values(
+	noticeboard_SEQ.nextval,
+	'개인정보 처리방침 개정안내',
+	'개인정보 처리방침 개정안내 내용',
+	sysdate,
+	0,
+	'admin',
+	'Y'
+);
+
+insert into noticeboard values(
+	noticeboard_SEQ.nextval,
+	'혼놀자 사칭 코인 세일 피싱 사이트 피해 주의 안내',
+	'혼놀자 사칭 코인 세일 피싱 사이트 피해 주의 안내 내용',
+	sysdate,
+	0,
+	'admin',
+	'N'
+);
+
+INSERT INTO noticeboard VALUES (
+noticeboard_seq.nextval, '카풀 중개 서비스 종료 안내',
+'안녕하세요, 혼놀자입니다.
+당사에서 일반회원분들께 제공하던 카풀 중개 서비스를 내달 1일 종료할 예정입니다.
+그동안 보내주신 많은 관심에 감사드리며 앞으로 더욱 노력하는 혼놀자가 되겠습니다.
+감사합니다.',
+sysdate,
+0,
+'admin',
+'N'
+);
+
+INSERT INTO noticeboard VALUES (
+noticeboard_seq.nextval, '게스트하우스 정보 갱신 안내',
+'안녕하세요, 혼놀자 입니다.
+많은 회원분들께서 문의로 몇몇 게스트하우스들의 허위광고에 관해 제보해주셨습니다.
+저희 혼놀자 측은 내부 회의를 통해 제보 받은 지점들의 게시글을 삭제하기로 하였습니다.
+관련 점검은 9월 6일 (목) 오전 4시에 이루어질 예정입니다.
+감사합니다.
+',
+sysdate,
+0,
+'admin',
+'N'
+);
+
+INSERT INTO noticeboard VALUES (
+noticeboard_seq.nextval, 'HONOLJA x BITCAMP 콜라보레이션 이벤트 안내',
+'안녕하세요, HONOLJA입니다.
+자세한 사항은 아래 링크를 참조해주세요.
+에이치티티피://링크닷컴',
+sysdate,
+0,
+'admin',
+'N'
+);
+
+INSERT INTO noticeboard VALUES (
+noticeboard_seq.nextval, '점주 회원분들 대상 공지입니다.',
+'안녕하세요. HONOLJA입니다.
+일반회원분들로부터 상세페이지 정보가 충분치 않다는 건의가 많이 들어옵니다.
+글 작성 시 주의해주세요.
+특히 소개용 사진은 방 내부가 정확하게 나온 사진을 등록해주세요.
+언제나 최선을 다하는 HONOLJA가 되겠습니다.
+감사합니다.',
+sysdate,
+0,
+'admin',
+'Y'
+);
+
+INSERT INTO noticeboard VALUES (
+noticeboard_seq.nextval, 'HONOLJA 통합 공지 v.0.0.2',
+'안녕하세요, HONOLJA입니다.
+통합 공지사항이 수정되었습니다.
+꼭 확인하시고 차후 이용에 불이익이 없도록 주의해주세요.
+감사합니다.',
+sysdate,
+0,
+'admin',
+'Y'
+);
+
+
+------------------------------------------------------------------------------------------reservation--
+
+CREATE TABLE reservation
+(
+    res_no        NUMBER(4)       NOT NULL, 
+    u_id          VARCHAR2(20)    NOT NULL, 
+    res_price     NUMBER(10)      NOT NULL, 
+    res_ok        CHAR            NOT NULL, 
+    res_people    number(4)       NOT NULL, 
+    res_date      DATE            NOT NULL, 
+    check_in      DATE            NOT NULL, 
+    check_out     DATE            NOT NULL, 
+    r_no          NUMBER(4)       NOT NULL, 
+    CONSTRAINT RESERVATION_PK PRIMARY KEY (res_no)
+);
+
+
+
+CREATE SEQUENCE reservation_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE reservation
+    ADD CONSTRAINT FK_reservation_r_no_roominfo_r FOREIGN KEY (r_no)
+        REFERENCES roominfo (r_no) on delete cascade;
+
+
+ALTER TABLE reservation
+    ADD CONSTRAINT FK_reservation_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id) on delete cascade;
+
+------------------------------------------------------------------------------------------guestlike--
+
+CREATE TABLE guestlike
+(
+    gl_no      number(4)       NOT NULL, 
+    gl_date    DATE            NOT NULL, 
+    u_id       VARCHAR2(20)    NOT NULL, 
+    g_no       NUMBER(4)       NOT NULL, 
+    CONSTRAINT GUESTLIKE_PK PRIMARY KEY (gl_no)
+);
+
+CREATE SEQUENCE guestlike_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE guestlike
+    ADD CONSTRAINT FK_guestlike_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id);
+
+
+ALTER TABLE guestlike
+    ADD CONSTRAINT FK_guestlike_g_no_guesthouse_g FOREIGN KEY (g_no)
+        REFERENCES guesthouse (g_no);
+
+
+------------------------------------------------------------------------------------------img_board--
+
+CREATE TABLE img_board
+(
+    i_no                  NUMBER(4)       NOT NULL, 
+    i_title               VARCHAR2(100)    NOT NULL, 
+    i_content             VARCHAR2(500)    NOT NULL, 
+    i_date                DATE            NOT NULL, 
+    i_viewcnt             NUMBER(4)     NOT NULL, 
+    i_starcnt             NUMBER(4)     NOT NULL,	
+    i_originalFileName    VARCHAR2(100)    NULL, 
+    i_uploadFileName      VARCHAR2(100)    NULL, 
+    i_fileSize            VARCHAR2(50)    NULL, 
+    i_youtube  VARCHAR2(50)  NULL, 
+    u_id                  VARCHAR2(20)    NOT NULL,
+    CONSTRAINT IMG_BOARD_PK PRIMARY KEY (i_no)
+);
+
+
+CREATE SEQUENCE img_board_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+
+ALTER TABLE img_board
+    ADD CONSTRAINT FK_img_board_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id);
+
+
+insert into img_board values ( img_board_seq.nextval, '뻔하지 않은 이색 데이트 스팟8', '#만원이하 #금주데이트 #추석연휴 #실내데이트 #1박2일코스 #추천가을여행 #당일치기 #서울근교', sysdate, 0, 0, '1.PNG', '1.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ', 'sky' );
+insert into img_board values ( img_board_seq.nextval, '호텔시설 뺨치는 국내 <글램핑 숙소 BEST 5>', '#숙소추천 #국내여행 #커플여행 #1박2일여행 #주말여행 #서울근교 #글램필 #카라반 #가평글램핑 #서울근교글램핑', sysdate, 0, 0, '2.PNG', '2.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ',  'hb' );
+insert into img_board values ( img_board_seq.nextval, '러브가 무엇이오? 전국 한옥 마을 데이트스팟 TOP4', '#만원이하 #금주데이트 #추석연휴 #실내데이트 #1박2일 코스 #추천가을여행 #당일치기 #서울근교', sysdate, 0, 0, '3.PNG', '3.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ',  'test' );
+insert into img_board values ( img_board_seq.nextval, '만원으로 떠나는 서울근교 양평 나들이', '#만원이하 #금주데이트 #추석연휴 #실내데이트 #1박2일코스 #추천가능여행 #당일치기 #서울근교', sysdate, 0, 0, '4.PNG', '4.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ',  'hb' );
+insert into img_board values ( img_board_seq.nextval, '필터 없이 믿고 가는 거제 리얼 여행', '#숙소추천 #국내여행 #커플여행 #1박2일여행 #주말여행 #거제여행 #셀프스냅 #스냅여행 #거제도펜션 #거제도카페', sysdate, 0, 0, '5.PNG', '5.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ', 'hb' );
+insert into img_board values ( img_board_seq.nextval, '콩닥콩닥 설렘증폭! 심야데이트 스팟', '#만원이하 #금주데이트 #추석연휴 #실내데이트 #1박2일코스 #추천가을여행 #당일치기 #서울근교', sysdate, 0, 0, '6.PNG', '6.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ',  'hb' );
+insert into img_board values ( img_board_seq.nextval, '색감깡패 전주 나홀로 셀프 스냅 여행기', '#숙소추천 #국내여행 #커플여행 #1박2일여행 #주말여행 #전주여행 #셀프스냅 #스냅여행 #게스트하우스 #전주맛집', sysdate, 0, 0, '7.PNG', '7.PNG', '1kb',  'https://www.youtube.com/embed/ogAhXWZaAJQ', 'test' );
+insert into img_board values ( img_board_seq.nextval, '막 찍어도 역대급! 지금 딱! 커플인생샷 스팟', '#만원이하 #금주데이트 #추석연휴 #실내데이트 #1박2일코스 #추천가을여행 #당일치기 #서울근교', sysdate, 0,  0,'8.PNG', '8.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ',  'sky' );
+insert into img_board values ( img_board_seq.nextval, '겉바속촌 가평 먹비게이션 작동 시작!', '#숙소추천 #국내여행 #커플여행 #1박2일여행 #가평여행 #가평맛집 #가평카페 #주말여행', sysdate, 0, 0, '9.PNG', '9.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ',  'test' );
+insert into img_board values ( img_board_seq.nextval, '망할 일 절대 없는 망원동 꿀 스팟 7', '#금주데이트 #실내데이트 #망원동 #데이트 #데이트코스 #서울데이트', sysdate, 0, 0, '10.PNG', '10.PNG', '1kb', 'hW-lr-EeGhY',  'sky' );
+insert into img_board values ( img_board_seq.nextval, '생각만해도 설레는 여수 먹부림 투어', '#숙소추천 #국내여행 #커플여행 #1박2일여행 #여수여행지 #여수맛집 #여수카페 #여수펜션 #오션뷰펜션', sysdate, 0,  0,'11.PNG', '11.PNG', '1kb',  'https://www.youtube.com/embed/ogAhXWZaAJQ',  'hb' );
+insert into img_board values ( img_board_seq.nextval, '가슴 뻥 뚫리는 강원도 오션뷰 숙소 모음', '#숙소추천 #국내여행 #커플여행 #1박2일여행 #강원도여행 #강릉 #풀빌라펜션 #스파펜션 #오션뷰펜션', sysdate, 0, 0, '12.PNG', '12.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ',  'sky' );
+insert into img_board values ( img_board_seq.nextval, '낮도 예쁘고 밤엔 더 예뻐! 가을 고궁산책 데이트', '#금주데이트 #추석연휴 #추석가능여행 #당일치기', sysdate, 0, 0, '13.PNG', '13.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ',  'test' );
+insert into img_board values ( img_board_seq.nextval, '위장이 춤추는 속초 먹방순례 8', '#속초 #먹방 #맛집 #맛집추천 #금주데이트 #1박2일코스 #속초여행 #추천가을여행', sysdate, 0, 0, '14.PNG', '14.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ',  'test' );
+insert into img_board values ( img_board_seq.nextval, '핵잼 꿀잼 가평 꿀스팟 7', '#서울근교 여행 #서울근교 #수도권 #주말 나들이 #주말데이트 #분위기 좋은 카페 #데이트 #가평 #가평여행 #가평맛집 #라쿠나카페 #아침고요수목원', sysdate, 0, 0, '15.PNG', '15.PNG', '1kb', 'https://www.youtube.com/embed/ogAhXWZaAJQ', 'test' );
+
+
+
+------------------------------------------------------------------------------------------img_reply--
+
+CREATE TABLE img_reply
+(
+    ir_no         NUMBER(4)       NOT NULL, 
+    ir_content    VARCHAR2(500)    NOT NULL, 
+    ir_date       DATE            NOT NULL, 
+    i_no          NUMBER(4)       NOT NULL, 
+    u_id          VARCHAR2(20)    NOT NULL, 
+    CONSTRAINT IMG_REPLY_PK PRIMARY KEY (ir_no)
+);
+
+
+CREATE SEQUENCE img_reply_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE img_reply
+    ADD CONSTRAINT FK_img_reply_i_no_img_board_i_ FOREIGN KEY (i_no)
+        REFERENCES img_board (i_no) on delete cascade;     
+
+
+ALTER TABLE img_reply
+    ADD CONSTRAINT FK_img_reply_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id) on delete cascade;
+
+insert into img_reply values(img_reply_seq.nextval, '정말 멋있네요. 방문하고 싶어요', sysdate, 1, 'hb');
+insert into img_reply values(img_reply_seq.nextval, '어딘지 물어봐도 될까요?', sysdate, 1, 'test');
+insert into img_reply values(img_reply_seq.nextval, '나도 가봤어요. 강추 합니다.', sysdate, 1, 'sky');
+insert into img_reply values(img_reply_seq.nextval, '작년 즈음에 갔었는데, 무지 불친절 해요.', sysdate, 1, 'sky');
+insert into img_reply values(img_reply_seq.nextval, '맞아요 가지마세요.', sysdate, 1, 'hb');
+
+
+
+
+
+ALTER TABLE boardreply
+    ADD CONSTRAINT FK_img_reply_i_no_img_board_i_ FOREIGN KEY (i_no)
+        REFERENCES img_board (i_no) on delete cascade;     
+
+
+
+------------------------------------------------------------------------------------------img_like--
+
+CREATE TABLE img_like
+(
+    il_no      NUMBER(4)       NOT NULL, 
+    il_like    VARCHAR2(20)    NOT NULL, 
+    u_id       VARCHAR2(20)    NOT NULL, 
+    i_no       NUMBER(4)       NOT NULL, 
+    CONSTRAINT IMG_LIKE_PK PRIMARY KEY (il_no)
+);
+
+CREATE SEQUENCE img_like_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+
+ALTER TABLE img_like
+    ADD CONSTRAINT FK_img_like_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id) on delete cascade;
+
+
+ALTER TABLE img_like
+    ADD CONSTRAINT FK_img_like_i_no_img_board_i_n FOREIGN KEY (i_no)
+        REFERENCES img_board (i_no) on delete cascade;
+
+------------------------------------------------------------------------------------------img_reply_of_reply--
+
+CREATE TABLE img_reply_of_reply
+(
+    irr_no         NUMBER(4)       NOT NULL, 
+    irr_content    VARCHAR2(500)    NOT NULL, 
+    irr_date       DATE            NOT NULL, 
+    ir_no          NUMBER(4)       NOT NULL, 
+    u_id           VARCHAR2(20)    NOT NULL, 
+    CONSTRAINT IMG_REPLY_OF_REPLY_PK PRIMARY KEY (irr_no)
+);
+
+CREATE SEQUENCE img_reply_of_reply_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+ALTER TABLE img_reply_of_reply
+    ADD CONSTRAINT FK_img_reply_of_reply_ir_no_im FOREIGN KEY (ir_no)
+        REFERENCES img_reply (ir_no) on delete cascade;
+
+
+ALTER TABLE img_reply_of_reply
+    ADD CONSTRAINT FK_img_reply_of_reply_u_id_use FOREIGN KEY (u_id)
+        REFERENCES users (u_id) on delete cascade;
+
+
+insert into img_reply_of_reply values(img_reply_of_reply_SEQ.nextval, '정말이에요??', sysdate,5, 'hb');
+insert into img_reply_of_reply values(img_reply_of_reply_SEQ.nextval, '거짓말 아니죠?', sysdate,5, 'sky');
+insert into img_reply_of_reply values(img_reply_of_reply_SEQ.nextval, '걱정마세요.', sysdate,5, 'hb');
+
+------------------------------------------------------------------------------------------boardrreply--
+
+CREATE TABLE boardrreply
+(
+    brr_no         number(4)        NOT NULL, 
+    brr_content    varchar2(100)    NOT NULL, 
+    brr_date       date             NOT NULL, 
+    br_no          number(4)        NOT NULL, 
+    u_id           VARCHAR2(20)     NOT NULL, 
+    depth          NUMBER(2)        NOT NULL, 
+    b_no           number(4)        NULL, 
+    CONSTRAINT BOARDRREPLY_PK PRIMARY KEY (brr_no)
+)
+/
+
+CREATE SEQUENCE boardrreply_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+ALTER TABLE boardrreply
+    ADD CONSTRAINT FK_boardrreply_u_id_users_u_id FOREIGN KEY (u_id)
+        REFERENCES users (u_id)
+
+
+ALTER TABLE boardrreply
+    ADD CONSTRAINT FK_boardrreply_br_no_boardrepl FOREIGN KEY (br_no)
+        REFERENCES boardreply (br_no) on delete cascade
+
+ALTER TABLE boardrreply
+    ADD CONSTRAINT FK_boardrreply_b_no_boardreply FOREIGN KEY (b_no)
+        REFERENCES boardreply (b_no) 
+
+
+
+
+
+
+
+
+commit;
+commit;
+

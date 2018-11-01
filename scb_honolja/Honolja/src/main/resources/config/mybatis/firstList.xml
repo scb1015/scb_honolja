@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="firstlist">
+
+<select resultType="com.guest.honolja.list.ListDTO" id="selectAll">
+	select * from (
+	select rownum as rn, g.*,
+	(select min(r_price) from roominfo where g_no = g.g_no) as low_price,
+    (select count(*) from review where g_no = g.g_no) as reviewcnt,
+    (select count(*) from guestlike where g_no = g.g_no) as islike,
+    (select count(*) from guestlike where g_no = g.g_no and u_id = #{u_id}) as check_like,
+    (select avg(re_score) from review where g_no = g.g_no) as avgs
+	from guesthouse g where g_name like '%'|| #{sval} || '%' or g_addr like '%' || #{sval} || '%'
+	) where low_price between #{startprice} and #{endprice} order by ${filter} ${range}
+</select>
+
+<select resultType="com.guest.honolja.list.ListDTO" id="selectlo">
+	select * from (
+	select rownum as rn, g.*,
+	(select min(r_price) from roominfo where g_no = g.g_no) as low_price,
+    (select count(*) from review where g_no = g.g_no) as reviewcnt,
+    (select count(*) from guestlike where g_no = g.g_no) as islike,
+    (select count(*) from guestlike where g_no = g.g_no and u_id = #{u_id}) as check_like,
+    (select avg(re_score) from review where g_no = g.g_no) as avgs
+	from guesthouse g where g_addr like '%'|| #{g_addr} || '%'
+	) where low_price between #{startprice} and #{endprice} order by ${filter} ${range}
+</select>
+
+<!-- <select resultType="com.guest.honolja.list.ListDTO" id="selscore">
+	select * from (
+	select rownum as rn, g.*,
+	(select re_score from review where g_no = g.g_no) as score
+	from guesthouse g)
+</select> -->
+<select resultType="com.guest.honolja.list.ListDTO" id="insertlike">
+	insert into guestlike values(guestlike_SEQ.nextval, sysdate, #{u_id}, #{g_no})
+</select>
+<select resultType="com.guest.honolja.list.ListDTO" id="deletelike">
+	delete from guestlike where u_id = #{u_id} and g_no = #{g_no}
+</select>
+
+<select resultType="int" id="like_cnt">
+	select count(*) from guestlike where u_id = #{u_id} and g_no = #{g_no}
+</select>
+
+<select resultType="int" id="countAll" parameterType="com.guest.honolja.list.ListDTO"> 
+	select count(*) from guesthouse where g_name like '%' || #{sval} || '%' 
+</select>
+
+</mapper>

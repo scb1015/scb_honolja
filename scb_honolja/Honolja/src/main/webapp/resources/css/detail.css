@@ -1,0 +1,379 @@
+@charset "UTF-8";
+
+#detail-info {
+	margin-top: 20px;
+}
+
+#my-tab-content {
+	margin-top: 20px;
+}
+
+.badge-live {
+	color: #fff;
+	/*display: inline-block;*/
+	font-size: 12px;
+	padding: 3px 5px 2px;
+	margin-right: 5px;
+	background-color: #18d0c5;
+}
+
+i, em, address {
+	font-style: normal;
+}
+
+.detail-info__title {
+	font-size: 42px;
+	color: #333;
+	margin-bottom: 5px;
+	font-weight: 200;
+	letter-spacing: -1px;
+}
+
+.detail-info__address {
+	font-size: 14px;
+}
+
+.detail-info__score {
+	margin-top: 20px;
+}
+
+.icon-staylist-score {
+	width: 16px;
+	height: 16px;
+}
+
+.icon-staylist-score.score10 {
+	background-position: 0 0;
+}
+
+.icon-staylist-score.score05 {
+	background-position: -18px 0;
+}
+
+.icon-staylist-score.score00 {
+	background-position: -38px 0;
+}
+
+.icon-staylist {
+	display: inline-block;
+	overflow: hidden;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -9999px;
+	vertical-align: middle;
+	background:
+		url(https://yaimg.yanolja.com/joy/pw/search/icon-staylist.svg)
+		no-repeat;
+}
+
+.review-info__content {
+	font-size: 15px;
+}
+
+.review-info-title {
+	margin-bottom: 20px;
+}
+
+.review-info {
+	display: block;
+	padding: 30px 10px;
+	min-height: 140px;
+}
+
+.review-userinfo {
+	margin-top: 20px;
+	font-size: 13px;
+	color: #888;
+}
+
+.review-userinfo .bar {
+	margin: 0 10px;
+	width: 1px;
+	height: 13px;
+	background-color: #ddd;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.review-info__content {
+	font-size: 15px;
+}
+
+.badge-best {
+	background-color: #ff2d60;
+}
+
+.badge-best, .badge-live, .badge-visited {
+	color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	padding: 3px 5px 2px;
+	margin-right: 5px;
+}
+
+.place-room__message {
+	min-height: 22px;
+	margin-top: 30px;
+	padding: 18px 20px 14px;
+	background-color: #f1fcfc;
+	border: 1px solid #e3eded;
+	font-size: 13px;
+}
+
+a {
+	color: #666666;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+i, em, address {
+	font-style: normal;
+}
+
+.icon-staylist-score {
+	width: 16px;
+	height: 16px;
+}
+
+.icon-staylist-score.score10 {
+	background-position: 0 0;
+}
+
+.icon-staylist-score.score05 {
+	background-position: -18px 0;
+}
+
+.icon-staylist-score.score00 {
+	background-position: -38px 0;
+}
+
+.icon-staylist {
+	display: inline-block;
+	overflow: hidden;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -9999px;
+	vertical-align: middle;
+	background:
+		url(https://yaimg.yanolja.com/joy/pw/search/icon-staylist.svg)
+		no-repeat;
+}
+
+.review-info__content {
+	font-size: 15px;
+}
+
+p {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+.place-review__item.is-thumbnail .review-info {
+	padding-left: 240px;
+}
+
+.place-review__image {
+	left: 10px;
+	top: 30px;
+	width: 210px;
+	height: 140px;
+}
+
+.empty-content {
+	padding: 200px 0 120px;
+	text-align: center;
+}
+
+.empty__text {
+	color: #333;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.empty__sub-text, .empty__text {
+	display: block;
+}
+
+a {
+	color: #666666;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+label, button, a {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#detail-info {
+	margin-top: 20px;
+}
+
+#my-tab-content {
+	margin-top: 20px;
+}
+
+.badge-live {
+	color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	padding: 3px 5px 2px;
+	margin-right: 5px;
+	background-color: #18d0c5;
+}
+
+.place-room__message {
+	min-height: 22px;
+	margin-top: 30px;
+	padding: 18px 20px 14px;
+	background-color: #f1fcfc;
+	border: 1px solid #e3eded;
+	font-size: 13px;
+}
+
+.badge-live {
+	background-color: #18d0c5;
+}
+
+.datepicker-content {
+	width: 400px;
+	margin-top: -180px;
+	position: relative;
+	z-index: 2;
+	background-color: #595f63;
+	color: #fff;
+	padding: 30px 0;
+	min-height: 150px;
+}
+
+.DateRangePicker-top {
+	font-size: 18px;
+	color: #fff;
+	margin: 0 5px;
+	padding: 0 20px;
+}
+
+.f-left {
+	float: left;
+}
+
+.f-right {
+	float: right;
+}
+
+.DateRangePicker {
+	font-size: 20px;
+	color: #ff777a;
+	box-sizing: border-box;
+	margin: 10px 0 20px;
+	padding: 0 20px;
+	width: 100%;
+	position: relative;
+	display: inline-block;
+	border: 0 none;
+	background: none;
+}
+
+.DateRangePicker-bottom {
+	font-size: 20px;
+	color: #fff;
+}
+
+.DateInput {
+	display: inline-block;
+	position: relative;
+	background: none;
+	padding: 0;
+}
+
+.thank-you-pop {
+	width: 100%;
+	padding: 20px;
+	text-align: center;
+}
+
+.thank-you-pop img {
+	width: 76px;
+	height: auto;
+	margin: 0 auto;
+	display: block;
+	margin-bottom: 25px;
+}
+
+.thank-you-pop h1 {
+	font-size: 42px;
+	margin-bottom: 25px;
+	color: #5C5C5C;
+}
+
+.thank-you-pop p {
+	font-size: 20px;
+	margin-bottom: 27px;
+	color: #5C5C5C;
+}
+
+.thank-you-pop h3.cupon-pop {
+	font-size: 25px;
+	margin-bottom: 40px;
+	color: #222;
+	display: inline-block;
+	text-align: center;
+	padding: 10px 20px;
+	border: 2px dashed #222;
+	clear: both;
+	font-weight: normal;
+}
+
+.thank-you-pop h3.cupon-pop span {
+	color: #03A9F4;
+}
+
+.thank-you-pop a {
+	display: inline-block;
+	margin: 0 auto;
+	padding: 9px 20px;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 14px;
+	background-color: #8BC34A;
+	border-radius: 17px;
+}
+
+.thank-you-pop a i {
+	margin-right: 5px;
+	color: #fff;
+}
+
+#ignismyModal .modal-header {
+	border: 0px;
+}
+
+.modal .modal-header {
+	border-bottom: none;
+	position: relative;
+}
+
+.modal .modal-header .btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.modal .modal-footer {
+	border-top: none;
+	padding: 0;
+}
+
+.modal .modal-footer .btn-group>.btn:first-child {
+	border-bottom-left-radius: 0;
+}
+
+.modal .modal-footer .btn-group>.btn:last-child {
+	border-top-right-radius: 0;
+}

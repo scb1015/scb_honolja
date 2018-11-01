@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+		.dropdown-button {
+			background-color: #FFFFFF;
+			padding: 8px;
+			border: none;
+		}
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+		.dropdown-content {
+			position: absolute;
+			display: none;
+			background-color: #FFFFFF;
+			padding: 5px;
+			min-width: 130px;
+		}
+		
+		ul li:hover > ul {
+ 			visibility: visible;
+		}
+		
+		.dropdown-content a {
+			color: black;
+			padding: 8px;
+			display: block;
+		}
+		.dropdown-content a:hover { 
+			background-color: #efefef;
+			text-decoration: none;
+		}
+		.dropdown:hover .dropdown-content { display: block; }
+		.dropdown:hover .dropdown-button { background-color: #efefef; }

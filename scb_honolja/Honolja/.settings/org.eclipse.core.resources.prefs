@@ -1,0 +1,14 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of https\://github.com/duracelldog/Honolja
+eclipse.preferences.version=1
+encoding//src/main/java/com/guest/honolja/board/BoardController.java=UTF-8
+encoding//src/main/java/com/guest/honolja/board/BoardDAO.java=UTF-8
+encoding//src/main/java/com/guest/honolja/list/ListController.java=UTF-8
+encoding//src/main/java/com/guest/honolja/member/MemberController.java=UTF-8
+encoding//src/main/java/com/guest/honolja/member/MemberDAO.java=UTF-8
+encoding//src/main/java/com/guest/honolja/message/MsgController.java=UTF-8
+encoding//src/main/java/com/guest/honolja/message/MsgDAO.java=UTF-8
+encoding//src/main/java/com/guest/honolja/mypage/MypageController.java=UTF-8
+encoding//src/main/java/com/guest/honolja/notice/NoticeController.java=UTF-8
+separateDerivedEncodings=true

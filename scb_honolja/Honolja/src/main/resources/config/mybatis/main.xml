@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+
+	<select id="selectIdPwd" parameterType="com.guest.honolja.member.MemberDTO" resultType="int">
+		select count(*) as u_cnt from users where u_id = #{u_id} and u_pwd = #{u_pwd}
+	</select>
+	
+	<select id="emailcheck" parameterType="com.guest.honolja.member.MemberDTO" resultType="String">
+		select u_emailcheck from users where u_id = #{u_id} and u_pwd = #{u_pwd}
+	</select>
+	
+	<select id="selectFixedNotice" resultType="main">
+		select rownum rn, n_title, n_fix from noticeboard where n_fix = 'Y'	
+	</select>
+	
+	<insert id="insertUsersInfo">
+		insert into users (u_no, u_id, u_name, u_birth, u_gender, u_img, u_email, u_date) values(
+			users_seq.nextval, #{u_id}, #{u_name}, #{u_birth}, #{u_gender}, #{u_img}, #{u_email}, sysdate	
+		)
+	</insert>
+	
+	<select id="selectIdCheck" parameterType="String" resultType="int">
+		select count(*) from users where u_id like '%' || #{u_id} || '%'
+	</select>
+	
+	<select id="membercheck" parameterType="String" resultType="String">
+		select u_member from users where u_id = #{u_id}
+	</select>
+</mapper>
