@@ -13,7 +13,6 @@
 	<title>[chatting.jsp]</title>
 </head>
 <body>
-
 	<table border="0" cellspacing = 0 style="width: 100%">
 		
 		<c:forEach var="rotation" begin="1" end="20">
